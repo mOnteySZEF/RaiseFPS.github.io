@@ -40,7 +40,7 @@ RaiseFPS jest zaprojektowane z myślą o graczach, którzy chcą maksymalnie wyk
 
 ## Użycie
 
-1. Po uruchomieniu aplikacji, kliknij przycisk "Optymalizuj", aby rozpocząć proces.
+1. Po uruchomieniu aplikacji kliknij przycisk 'Zrób punkt przywracania', a następnie wybierz kategorię optymalizacji. Proces rozpocznie się automatycznie.
 2. Aplikacja wyświetli status optymalizacji oraz zalecane działania.
 3. Po zakończeniu procesu, możesz uruchomić swoje ulubione gry z lepszą wydajnością.
 
