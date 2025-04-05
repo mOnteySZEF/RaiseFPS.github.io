@@ -1,32 +1,22 @@
 import tkinter as tk
 from tkinter import messagebox
-import os
-import shutil
 from PIL import Image, ImageTk
 import requests
 from io import BytesIO
 
-def clear_temp_files():
-    temp_dir = os.path.join(os.getenv('TEMP'))
-    try:
-        for filename in os.listdir(temp_dir):
-            file_path = os.path.join(temp_dir, filename)
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-            elif os.path.isdir(file_path):
-                shutil.rmtree(file_path)
-        messagebox.showinfo("Sukces", "Pliki tymczasowe zostały usunięte.")
-    except Exception as e:
-        messagebox.showerror("Błąd", f"Wystąpił błąd: {e}")
-
+import LowMode
+import MediumMode
+import ProMode
 def optimize(level):
-    clear_temp_files()
     if level == "low":
-        messagebox.showinfo("Optymalizacja", "Optymalizacja niska zakończona!")
+        LowMode.optimize_low()
+        messagebox.showinfo("Optymalizacja", "Optymalizacja LOW zakończona pomyślnie!")
     elif level == "medium":
-        messagebox.showinfo("Optymalizacja", "Optymalizacja średnia zakończona!")
-    elif level == "hard":
-        messagebox.showinfo("Optymalizacja", "Optymalizacja trudna - Bądź ostrożny z procesami!")
+        MediumMode.optimize_medium()
+        messagebox.showinfo("Optymalizacja", "Optymalizacja MEDIUM zakończona pomyślnie!")
+    elif level == "pro":
+        ProMode.optimize_pro()
+        messagebox.showinfo("Optymalizacja", "Optymalizacja PRO zakończona pomyślnie!")
 
 def create_gui():
     root = tk.Tk()
@@ -38,7 +28,7 @@ def create_gui():
     bg_color = "#012025"        # ciemne tło
     low_color = "#FFDC57"       # zieleń
     medium_color = "#7EDA53"    # żółty
-    hard_color = "#FF5558"      # czerwony
+    pro_color = "#FF5558"      # czerwony
 
     image_url = 'https://i.fmfile.com/I3L9suyZSKkKsLtt1FUmd/RaiseFPS.png'
     response = requests.get(image_url)
@@ -66,7 +56,6 @@ def create_gui():
         bg=bg_color
     )
     subtitle_label.pack(pady=(0, 20))
-
     button_frame = tk.Frame(root, bg=bg_color)
     button_frame.pack(pady=20)
 
@@ -88,11 +77,11 @@ def create_gui():
 
     low_button = create_button("Low", low_color, lambda: optimize("low"))
     medium_button = create_button("Medium", medium_color, lambda: optimize("medium"))
-    hard_button = create_button("Pro", hard_color, lambda: optimize("hard"))
+    pro_button = create_button("Pro", pro_color, lambda: optimize("pro"))
 
     low_button.pack(pady=10, fill=tk.X, padx=50)
     medium_button.pack(pady=10, fill=tk.X, padx=50)
-    hard_button.pack(pady=10, fill=tk.X, padx=50)
+    pro_button.pack(pady=10, fill=tk.X, padx=50)
 
     footer_label = tk.Label(
         root,
