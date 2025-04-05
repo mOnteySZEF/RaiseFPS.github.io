@@ -3,7 +3,6 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import requests
 from io import BytesIO
-
 import LowMode
 import MediumMode
 import ProMode
