@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 import os
 import shutil
+from PIL import Image, ImageTk
+import requests
 from io import BytesIO
 
 def clear_temp_files():
@@ -29,7 +31,7 @@ def optimize(level):
 def create_gui():
     root = tk.Tk()
     root.title("RaiseFPS")
-    root.geometry("450x500")
+    root.geometry("480x600")
     root.configure(bg="#012025")
     root.resizable(False, False)
 
@@ -38,16 +40,22 @@ def create_gui():
     medium_color = "#7EDA53"    # żółty
     hard_color = "#FF5558"      # czerwony
 
+    image_url = 'https://i.fmfile.com/I3L9suyZSKkKsLtt1FUmd/RaiseFPS.png'
+    response = requests.get(image_url)
+    img_data = BytesIO(response.content)
+    img = Image.open(img_data)
+    img = img.resize((150, 125))
+    logo_image = ImageTk.PhotoImage(img)
+
     header_frame = tk.Frame(root, bg=bg_color)
     header_frame.pack(fill=tk.X, pady=(10, 0))
 
     logo_label = tk.Label(
         header_frame, 
-        text="RaiseFPS",
-        font=("Poppins", 35, "bold"),
-        fg="white",
+        image=logo_image,
         bg=bg_color
     )
+    logo_label.image = logo_image
     logo_label.pack(pady=(20, 0))
 
     subtitle_label = tk.Label(
