@@ -60,7 +60,7 @@ RaiseFPS jest dostępne na licencji GNU General Public License v3.0 . Zobacz pli
 
 W przypadku pytań lub sugestii, możesz skontaktować się ze mną przez:
 
-- Email: monteyszef@gmail.com
-- GitHub: [mOntey](https://github.com/mOnteySZEF)
+- Email: monteyszef@gmail.com / bartolinski6@gmail.com
+- GitHub: [mOntey](https://github.com/mOnteySZEF) lub [Bartolinski](https://github.com/Bartolinski4)
 
 Dziękuję za zainteresowanie RaiseFPS!
