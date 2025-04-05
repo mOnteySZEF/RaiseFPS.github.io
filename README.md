@@ -63,4 +63,4 @@ W przypadku pytań lub sugestii, możesz skontaktować się ze mną przez:
 - Email: monteyszef@gmail.com / bartolinski6@gmail.com
 - GitHub: [mOntey](https://github.com/mOnteySZEF) / [Bartolinski](https://github.com/Bartolinski4)
 
-Dziękuję za zainteresowanie RaiseFPS!
+Dziękujemy za zainteresowanie RaiseFPS!
