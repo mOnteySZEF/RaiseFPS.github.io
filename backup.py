@@ -13,7 +13,6 @@ def backup(description):
         messagebox.showerror("Błąd", "Ochrona systemu nie jest włączona. Aby stworzyć punkt przywracania, musisz włączyć ochronę systemu.")
         return
 
-    messagebox.showinfo("Kopia zapasowa", "Trwa robienie kopii zapasowej... Proszę czekać.")
     threading.Thread(target=run_backup, args=(description,)).start()
 
 def run_backup(description):
