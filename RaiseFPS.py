@@ -43,7 +43,6 @@ def show_loading(level, callback):
     )
     progress.pack(pady=(0, 10))
 
-    # Styl ładnego paska
     style = ttk.Style()
     style.theme_use("default")
     style.configure(
