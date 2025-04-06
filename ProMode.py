@@ -62,14 +62,15 @@ def optimize_pro():
         optimize_gaming()
         disable_services()
         optimize_power_settings()
-        commands()
+        execute_commands()
 
         messagebox.showinfo("Optymalizacja", "Optymalizacja PRO zakończona pomyślnie!")
 
     optimization_thread = threading.Thread(target=run_optimization)
     optimization_thread.start()
 
-def commands():
+
+def execute_commands():
     print("Optymalizacja PRO jest w toku...")
     messagebox.showinfo("Optymalizacja", "Optymalizacja PRO jest w toku...")
     commands = [
@@ -839,3 +840,12 @@ dism.exe /Online /Remove-Package /PackageName:$pkgname /NoRestart } }\"",
         "reg add \"HKCU\Control Panel\Desktop\" /v WaitToKillServiceTimeout /t REG_DWORD /d 20000 /f",
     ]
 
+    for command in commands:
+        try:
+            if command.startswith("PowerShell"):
+                subprocess.call(command, shell=True)
+            else:
+                subprocess.call(command, shell=True)
+            print(f"Wykonano: {command}")
+        except Exception as e:
+            print(f"Błąd podczas wykonywania {command}: {str(e)}")
