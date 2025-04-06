@@ -83,14 +83,14 @@ def create_login_window():
     tk.Label(
         login_window,
         text="Login:",
-        font=("Poppins", 14),
+        font=("Verdana", 14),
         fg="white",
         bg=bg_color
     ).pack(pady=(20, 10))
 
     username_entry = tk.Entry(
         login_window,
-        font=("Poppins", 14),
+        font=("Verdana", 14),
         bg="#2C3E50",
         fg="white",
         relief="flat",
@@ -101,14 +101,14 @@ def create_login_window():
     tk.Label(
         login_window,
         text="Hasło:",
-        font=("Poppins", 14),
+        font=("Verdana", 14),
         fg="white",
         bg=bg_color
     ).pack(pady=(10, 10))
 
     password_entry = tk.Entry(
         login_window,
-        font=("Poppins", 14),
+        font=("Verdana", 14),
         bg="#2C3E50",
         fg="white",
         relief="flat",
@@ -125,7 +125,7 @@ def create_login_window():
         fg="black",
         activebackground="#FFDC57",
         activeforeground="white",
-        font=("Poppins", 14, "bold"),
+        font=("Verdana", 14, "bold"),
         relief="flat",
         padx=40,
         pady=10
@@ -136,11 +136,11 @@ def create_login_window():
         login_window,
         text="Zaloguj jako gość",
         command=login_guest,
-        bg="#FF5558",
+        bg="#305afc",
         fg="black",
-        activebackground="#FF5558",
+        activebackground="#201afc",
         activeforeground="white",
-        font=("Poppins", 14, "bold"),
+        font=("Verdana", 14, "bold"),
         relief="flat",
         padx=40,
         pady=10
@@ -168,7 +168,7 @@ def show_loading(level, callback):
     label = tk.Label(
         loading_window,
         text="Rozpoczynanie optymalizacji...",
-        font=("Poppins", 12, "bold"),
+        font=("Verdana", 12, "bold"),
         fg="white",
         bg="#012025"
     )
@@ -292,12 +292,21 @@ def create_gui(user_type):
         )
 
         def on_enter(e):
-            button['bg'] = darken_color(color, 0.4) 
-            button['fg'] = "white"
+            if not state == "disabled":
+                button['bg'] = darken_color(color, 0.4) 
+                button['fg'] = "white"
 
         def on_leave(e):
-            button['bg'] = color
-            button['fg'] = text_color
+            if not state == "disabled":
+                button['bg'] = color
+                button['fg'] = text_color
+
+        def on_disabled():
+            button['bg'] = "#BDC3C7"
+            button['fg'] = "#7F8C8D"
+
+        if state == "disabled":
+            on_disabled()
 
         button.bind("<Enter>", on_enter)
         button.bind("<Leave>", on_leave)
@@ -317,7 +326,7 @@ def create_gui(user_type):
     footer_label = tk.Label(
         root,
         text="© 2025 RaiseFPS",
-        font=("Poppins", 10),
+        font=("Verdana", 10),
         bg=bg_color,
         fg="#636e72"
     )
