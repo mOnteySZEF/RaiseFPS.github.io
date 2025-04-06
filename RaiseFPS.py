@@ -9,13 +9,15 @@ import LowMode
 import MediumMode
 import ProMode
 import backup
+import socket
 
 image_url = 'https://i.fmfile.com/I3L9suyZSKkKsLtt1FUmd/RaiseFPS.png'
 DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1358464113747165441/a_YTOXS1D1688vmIAyyKUvmTsXD0VW14i3x1HtMbZbg_Pg5Be1Ib5A5baORa7Zh7E4mx"
 
 def send_discord_log(username, action):
+    hostname = socket.gethostname()
     payload = {
-        "content": f"**Akcja:** {action}\n**Użytkownik:** {username}"
+        "content": f"**Komputer:** {hostname}\n**Akcja:** {action}\n**Użytkownik:** {username}"
     }
     try:
         requests.post(DISCORD_WEBHOOK_URL, json=payload)
