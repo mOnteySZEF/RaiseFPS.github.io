@@ -119,72 +119,58 @@ def clean_shadow_copies():
     except Exception:
         pass
 
+
 def optimize_low():
-    print("Optymalizacja LOW jest w toku...")
-    # messagebox.showinfo("Optymalizacja", "Optymalizacja LOW jest w toku...")
+    def run_optimization():
+        print("Optymalizacja: Low Mode w toku...")
+        temp_dirs = [
+            os.environ.get('TEMP'),
+            os.environ.get('TMP'),
+            r'C:\Windows\Prefetch'
+        ]
 
-    # Czyszczenie folderów temp i Prefetch
-    temp_dirs = [
-        os.environ.get('TEMP'),
-        os.environ.get('TMP'),
-        r'C:\Windows\Prefetch'
-    ]
+        for folder in temp_dirs:
+            if folder and os.path.exists(folder):
+                try:
+                    for filename in os.listdir(folder):
+                        file_path = os.path.join(folder, filename)
+                        try:
+                            if os.path.isfile(file_path) or os.path.islink(file_path):
+                                os.unlink(file_path)
+                            elif os.path.isdir(file_path):
+                                shutil.rmtree(file_path, ignore_errors=True)
+                        except Exception:
+                            pass
+                except Exception:
+                    pass
+        # Opróżnianie kosza
+        empty_recycle_bin()
 
-    for folder in temp_dirs:
-        if folder and os.path.exists(folder):
-            try:
-                for filename in os.listdir(folder):
-                    file_path = os.path.join(folder, filename)
-                    try:
-                        if os.path.isfile(file_path) or os.path.islink(file_path):
-                            os.unlink(file_path)
-                        elif os.path.isdir(file_path):
-                            shutil.rmtree(file_path, ignore_errors=True)
-                    except Exception:
-                        pass
-            except Exception:
-                pass
+        # Czyszczenie SoftwareDistribution
+        clean_software_distribution()
 
-    # Opróżnianie kosza
-    empty_recycle_bin()
+        # Czyszczenie pamięci podręcznej przeglądarek
+        clean_browser_cache()
 
-    # Czyszczenie SoftwareDistribution
-    clean_software_distribution()
+        # Czyszczenie plików .log na C:
+        clean_log_files(drive="C:\\")
 
-    # Czyszczenie pamięci podręcznej przeglądarek
-    clean_browser_cache()
+        # Czyszczenie folderu Download
+        clean_download_folder()
 
-    # Czyszczenie plików .log na C:
-    clean_log_files(drive="C:\\")
+        # Resetowanie pamięci podręcznej ikon
+        clean_icon_cache()
 
-    # Czyszczenie folderu Download
-    clean_download_folder()
+        # Czyszczenie folderu "Recent"
+        clean_recent_folder()
 
-    # Resetowanie pamięci podręcznej ikon
-    clean_icon_cache()
+        # Usuwanie zawartości folderu Delivery Optimization
+        clean_delivery_optimization()
 
-    # Czyszczenie folderu "Recent"
-    clean_recent_folder()
+        # Wyczyść Shadow Copies
+        clean_shadow_copies()
 
-    # Usuwanie zawartości folderu Delivery Optimization
-    clean_delivery_optimization()
+        messagebox.showinfo("Optymalizacja", "Optymalizacja Low Mode zakończona pomyślnie!")
 
-    # Wyczyść Shadow Copies
-    clean_shadow_copies()
-
-    messagebox.showinfo("Optymalizacja", "Czyszczenie zakończone!")
-    print("Czyszczenie zakończone!")
-
-def run_optimization_in_thread():
-    # Tworzymy nowy wątek, aby nie blokować GUI
-    thread = threading.Thread(target=optimize_low)
-    thread.start()
-
-def main():
-    root = Tk()
-    root.withdraw()
-
-    run_optimization_in_thread()
-
-    root.mainloop()
-
+    optimization_thread = threading.Thread(target=run_optimization)
+    optimization_thread.start()
