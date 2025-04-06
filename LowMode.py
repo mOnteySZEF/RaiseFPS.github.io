@@ -2,7 +2,8 @@ import os
 import shutil
 import ctypes
 import subprocess
-from tkinter import messagebox
+import threading
+from tkinter import Tk, messagebox
 
 def empty_recycle_bin():
     try:
@@ -173,3 +174,17 @@ def optimize_low():
 
     messagebox.showinfo("Optymalizacja", "Czyszczenie zakończone!")
     print("Czyszczenie zakończone!")
+
+def run_optimization_in_thread():
+    # Tworzymy nowy wątek, aby nie blokować GUI
+    thread = threading.Thread(target=optimize_low)
+    thread.start()
+
+def main():
+    root = Tk()
+    root.withdraw()  # Ukrywa główne okno (niepotrzebne dla komunikatów)
+
+    run_optimization_in_thread()
+
+    root.mainloop()
+
