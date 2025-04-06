@@ -121,7 +121,7 @@ def clean_shadow_copies():
 
 def optimize_low():
     print("Optymalizacja LOW jest w toku...")
-    messagebox.showinfo("Optymalizacja", "Optymalizacja LOW jest w toku...")
+    # messagebox.showinfo("Optymalizacja", "Optymalizacja LOW jest w toku...")
 
     # Czyszczenie folderów temp i Prefetch
     temp_dirs = [
