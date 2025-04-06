@@ -182,7 +182,7 @@ def run_optimization_in_thread():
 
 def main():
     root = Tk()
-    root.withdraw()  # Ukrywa główne okno (niepotrzebne dla komunikatów)
+    root.withdraw()
 
     run_optimization_in_thread()
 
