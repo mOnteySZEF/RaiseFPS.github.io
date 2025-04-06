@@ -3,3 +3,4 @@ __pycache__/
 dist/
 build/
 notatka.txt
+RaiseFPS.spec

@@ -20,7 +20,6 @@ def optimize(level):
         messagebox.showinfo("Optymalizacja", "Optymalizacja PRO zakończona pomyślnie!")
     elif level == "backup":
         backup.backup("Punkt przywracania wykonany przez RaiseFPS")
-        messagebox.showinfo("Backup", "Backup wykonano pomyślnie!")
 
 def create_gui():
     root = tk.Tk()
