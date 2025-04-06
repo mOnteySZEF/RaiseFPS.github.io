@@ -82,7 +82,6 @@ def optimize(level):
             messagebox.showinfo("RaiseFPS", "Optymalizacja PRO zakończona pomyślnie!")
         elif level == "backup":
             backup.backup("Punkt przywracania wykonany przez RaiseFPS")
-            messagebox.showinfo("RaiseFPS", "Punkt przywracania został utworzony.")
 
     show_loading(level, do_optimization)
 
