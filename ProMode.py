@@ -106,7 +106,6 @@ def optimize_pro():
     def execute_commands():
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
-            "winget upgrade --all",
             "bcdedit /set disabledynamictick yes > nul",
             "bcdedit /set useplatformtick yes > nul",
             "bcdedit /set tscsyncpolicy enhanced > nul",
@@ -867,6 +866,7 @@ def optimize_pro():
             "reg add \"HKCU\Control Panel\Desktop\" /v WaitToKillServiceTimeout /t REG_DWORD /d 20000 /f",
             "reg add \"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\RiotClientCrashHandler.exe\PerfOptions\" /v CpuPriorityClass /t REG_DWORD /d 1 /f",
             "reg add \"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\RiotClientServices.exe\PerfOptions\" /v CpuPriorityClass /t REG_DWORD /d 1 /f",
+            "winget upgrade --all --accept-source-agreements --silent",
         ]
 
         for command in commands:
