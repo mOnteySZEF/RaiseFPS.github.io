@@ -1,8 +1,10 @@
 import subprocess
 import os
+import psutil
 from tkinter import messagebox
 import threading
 import shutil
+import RaiseFPS
 
 def execute_and_handle_errors(command):
     try:
@@ -76,6 +78,35 @@ def disable_services():
     subprocess.call('sc stop "bits"', shell=True)  # Usługi BITS
     subprocess.call('sc config "bits" start= disabled', shell=True)
 
+def threshold_RAM():
+    ram = psutil.virtual_memory().total / (1024 * 1024 * 1024)  # GB
+
+    if ram < 4:
+        wartosc = 4194304
+    elif ram < 6:
+        wartosc = 6291456
+    elif ram < 8:
+        wartosc = 8388608
+    elif ram < 12:
+        wartosc = 12582912
+    elif ram < 16:
+        wartosc = 16777216
+    elif ram < 32:
+        wartosc = 33554432
+    elif ram < 64:
+        wartosc = 67108864
+    elif ram < 128:
+        wartosc = 134217728
+    elif ram < 192:
+        wartosc = 201326592
+    elif ram < 256:
+        wartosc = 268435456
+    elif ram < 512:
+        wartosc = 536870912
+
+    polecenie = f'reg add "HKLM\\SYSTEM\\ControlSet001\\Control" /v SvcHostSplitThresholdInKB /t REG_DWORD /d {wartosc} /f'
+    subprocess.run(polecenie, shell=True)
+
 def optimize_power_settings():
     print("Optymalizacja: Ustawienia zasilania...")
     subprocess.call('powercfg /change standby-timeout-ac 0', shell=True)  # Wyłącz auto-zamykanie ekranu
@@ -93,10 +124,10 @@ def optimize_pro():
         optimize_gaming()
         disable_services()
         fivem_cache()
+        threshold_RAM()
         optimize_power_settings()
 
-        messagebox.showinfo("Optymalizacja", "Optymalizacja PRO zakończona pomyślnie!")
-
+        RaiseFPS.stop_loading()
         restart = messagebox.askyesno("Restart systemu", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
         if restart:
             os.system("shutdown /r /t 0")

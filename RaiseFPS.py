@@ -15,28 +15,20 @@ import ctypes
 
 
 def is_admin():
-    """Sprawdza, czy skrypt jest uruchamiany jako administrator."""
     try:
         return ctypes.windll.shell32.IsUserAnAdmin()
     except:
         return False
 
 def run_as_admin():
-    """Uruchamia ponownie skrypt jako administrator."""
     if sys.platform == 'win32':
-        # Konstruujemy polecenie do uruchomienia skryptu jako administrator
-        # 'pythonw' używany jest, aby nie otwierać konsoli (jeśli skrypt nie wymaga interakcji)
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
     else:
-        # Inne platformy systemowe (jeśli potrzebujesz)
         print("Nie obsługiwano")
-    sys.exit()  # Kończymy bieżący skrypt 
+    sys.exit()
 
 if not is_admin():
-    run_as_admin()  # Jeśli nie jest administratorem, uruchom ponownie jako administrator
-
-# Reszta twojego kodu
-print("Skrypt działa z uprawnieniami administracyjnymi!")
+    run_as_admin()
 
 image_url = 'https://i.fmfile.com/I3L9suyZSKkKsLtt1FUmd/RaiseFPS.png'
 DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1358464113747165441/a_YTOXS1D1688vmIAyyKUvmTsXD0VW14i3x1HtMbZbg_Pg5Be1Ib5A5baORa7Zh7E4mx"
@@ -179,14 +171,12 @@ def create_login_window():
     login_window.mainloop()
 
 
+stop_loading_flag = False
 def show_loading(level, callback):
-    load_times = {
-        "low": 5,
-        "medium": 10,
-        "pro": 15,
-        "backup": 3
-    }
-    loading_time = load_times.get(level, 5)
+    global stop_loading_flag
+    stop_loading_flag = False
+
+    loading_time = 10
 
     loading_window = tk.Toplevel()
     loading_window.title("Optymalizacja...")
@@ -226,6 +216,9 @@ def show_loading(level, callback):
 
     def update_animation():
         for i in range(101):
+            if stop_loading_flag:
+                loading_window.destroy()
+                return
             progress["value"] = i
             if i % 25 == 0 and i // 25 < len(loading_texts):
                 label.config(text=loading_texts[i // 25])
@@ -237,20 +230,27 @@ def show_loading(level, callback):
 
     threading.Thread(target=update_animation, daemon=True).start()
 
+def stop_loading():
+    global stop_loading_flag
+    stop_loading_flag = True
 
 def optimize(level):
+    if level == "low":
+        LowMode.optimize_low()
+    elif level == "medium":
+        MediumMode.optimize_medium()
+    elif level == "pro":
+        ProMode.optimize_pro()
+    elif level == "backup":
+        backup.backup("Punkt przywracania wykonany przez RaiseFPS")
+
     def do_optimization():
         if level == "low":
-            LowMode.optimize_low()
             messagebox.showinfo("RaiseFPS", "Optymalizacja LOW zakończona pomyślnie!")
         elif level == "medium":
-            MediumMode.optimize_medium()
             messagebox.showinfo("RaiseFPS", "Optymalizacja MEDIUM zakończona pomyślnie!")
         elif level == "pro":
-            ProMode.optimize_pro()
             messagebox.showinfo("RaiseFPS", "Optymalizacja PRO zakończona pomyślnie!")
-        elif level == "backup":
-            backup.backup("Punkt przywracania wykonany przez RaiseFPS")
 
     show_loading(level, do_optimization)
 

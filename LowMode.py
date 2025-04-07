@@ -4,6 +4,7 @@ import ctypes
 import subprocess
 import threading
 from tkinter import Tk, messagebox
+import RaiseFPS
 
 def empty_recycle_bin():
     try:
@@ -145,32 +146,23 @@ def optimize_low():
                     pass
         # Opróżnianie kosza
         empty_recycle_bin()
-
         # Czyszczenie SoftwareDistribution
         clean_software_distribution()
-
         # Czyszczenie pamięci podręcznej przeglądarek
         clean_browser_cache()
-
         # Czyszczenie plików .log na C:
         clean_log_files(drive="C:\\")
-
         # Czyszczenie folderu Download
         clean_download_folder()
-
         # Resetowanie pamięci podręcznej ikon
         clean_icon_cache()
-
         # Czyszczenie folderu "Recent"
         clean_recent_folder()
-
         # Usuwanie zawartości folderu Delivery Optimization
         clean_delivery_optimization()
-
         # Wyczyść Shadow Copies
         clean_shadow_copies()
 
-        messagebox.showinfo("Optymalizacja", "Optymalizacja Low Mode zakończona pomyślnie!")
-
+        RaiseFPS.stop_loading()
     optimization_thread = threading.Thread(target=run_optimization)
     optimization_thread.start()

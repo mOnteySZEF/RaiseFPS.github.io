@@ -2,6 +2,7 @@ import subprocess
 import os
 import threading
 from tkinter import messagebox
+import RaiseFPS
 
 def cleanup_basic_files():
     print("Optymalizacja: Czyszczenie podstawowych plików...")
@@ -41,6 +42,6 @@ def optimize_medium():
         optimize_registry()
         optimize_power_settings()
 
-        messagebox.showinfo("Optymalizacja", "Optymalizacja Medium Mode zakończona pomyślnie!")
+        RaiseFPS.stop_loading()
     optimization_thread = threading.Thread(target=run_optimization)
     optimization_thread.start()
