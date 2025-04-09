@@ -750,6 +750,32 @@ def optimize_pro():
             "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Power\" /v \"PlatformAoAcOverride\" /t REG_DWORD /d 0 /f"
             "reg add \"HKEY_CURRENT_USER\\Control Panel\\Desktop\" /v \"MenuShowDelay\" /t REG_SZ /d \"0\" /f"
             "reg add \"HKEY_CURRENT_USER\\Control Panel\\Mouse\" /v \"MouseHoverTime\" /t REG_SZ /d \"0\" /f"
+
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\LanmanServer\\Parameters\" /v \"autodisconnect\" /t REG_DWORD /d 4294967295 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\LanmanServer\\Parameters\" /v \"Size\" /t REG_DWORD /d 3 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\LanmanServer\\Parameters\" /v \"EnableOplocks\" /t REG_DWORD /d 0 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\LanmanServer\\Parameters\" /v \"IRPStackSize\" /t REG_DWORD /d 32 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\LanmanServer\\Parameters\" /v \"SharingViolationDelay\" /t REG_DWORD /d 0 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\LanmanServer\\Parameters\" /v \"SharingViolationRetries\" /t REG_DWORD /d 0 /f"
+            "reg add \"HKEY_CURRENT_USER\\Control Panel\\Keyboard\" /v \"KeyboardDelay\" /t REG_SZ /d \"0\" /f"
+            "reg add \"HKEY_USERS\\.DEFAULT\\Control Panel\\Keyboard\" /v \"KeyboardDelay\" /t REG_SZ /d \"0\" /f"
+            "reg add \"HKEY_USERS\\.DEFAULT\\Control Panel\\Mouse\" /v \"MouseSpeed\" /t REG_SZ /d \"0\" /f"
+            "reg add \"HKEY_USERS\\.DEFAULT\\Control Panel\\Mouse\" /v \"MouseThreshold1\" /t REG_SZ /d \"0\" /f"
+            "reg add \"HKEY_USERS\\.DEFAULT\\Control Panel\\Mouse\" /v \"MouseThreshold2\" /t REG_SZ /d \"0\" /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorSpeed\" /v \"CursorSensitivity\" /t REG_DWORD /d 10000 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorSpeed\" /v \"CursorUpdateInterval\" /t REG_DWORD /d 1 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorSpeed\" /v \"IRRemoteNavigationDelta\" /t REG_DWORD /d 1 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorMagnetism\" /v \"AttractionRectInsetInDIPS\" /t REG_DWORD /d 5 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorMagnetism\" /v \"DistanceThresholdInDIPS\" /t REG_DWORD /d 40 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorMagnetism\" /v \"MagnetismDelayInMilliseconds\" /t REG_DWORD /d 50 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorMagnetism\" /v \"MagnetismUpdateIntervalInMilliseconds\" /t REG_DWORD /d 16 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\Settings\\ControllerProcessor\\CursorMagnetism\" /v \"VelocityInDIPSPerSecond\" /t REG_DWORD /d 360 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mouclass\\Parameters\" /v \"MouseDataQueueSize\" /t REG_DWORD /d 20 /f"
+            "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mouclass\\Parameters\" /v \"ThreadPriority\" /t REG_DWORD /d 31 /f"
+            "reg add \"HKEY_CURRENT_USER\\Control Panel\\Mouse\" /v \"MouseSensitivity\" /t REG_SZ /d \"10\" /f"
+            "reg add \"HKEY_CURRENT_USER\\Control Panel\\Mouse\" /v \"SmoothMouseXCurve\" /t REG_BINARY /d \"0000000000000000C0CC0C00000000000000000080 9919000000000040662600000000000033330000000000\" /f"
+            "reg add \"HKEY_CURRENT_USER\\Control Panel\\Mouse\" /v \"SmoothMouseYCurve\" /t REG_BINARY /d \"000000000000000000003800000000000000007000000000000000A80000000000000E00000000000\" /f"            
+
         ]
 
         for command in commands:
@@ -956,12 +982,11 @@ def optimize_pro():
             "bcdedit /set hypervisorlaunchtype off",
             "bcdedit /set tpmbootentropy ForceDisable",
             "bcdedit /set useplatformclock no",
-            "bcdedit /set useplatformtick yes",
             "bcdedit /set x2apicpolicy enable",
             "bcdedit /set uselegacyapicmode no",
             "bcdedit /set tscsyncpolicy legacy",
             "bcdedit /set tscsyncpolicy Legacy",
-            "bcdedit /set disabledynamictick yes",
+            "bcdedit /deletevalue useplatformclock"
             ]
 
         for command in commands:
