@@ -130,7 +130,6 @@ def optimize_pro():
         fivem_cache()
         threshold_RAM()
         optimize_power_settings()
-        wingetupgrade()
 
         RaiseFPS.stop_loading()
         restart = messagebox.askyesno("Restart systemu", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
