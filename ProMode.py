@@ -400,7 +400,6 @@ def optimize_pro():
             "reg add \"HKCU\Control Panel\Desktop\" /v WallpaperOriginY /t REG_DWORD /d 0 /f",
             "reg add \"HKCU\Control Panel\Desktop\" /v WallpaperStyle /t REG_SZ /d \"10\" /f",
             "reg add \"HKCU\Control Panel\Desktop\" /v WheelScrollChars /t REG_DWORD /d 3 /f",
-            "reg add \"HKCU\Control Panel\Desktop\" /v WheelScrollLines /t REG_DWORD /d 3 /f",
             "reg add \"HKCU\Control Panel\Desktop\" /v WindowArrangementActive /t REG_DWORD /d 0 /f",
             "reg add \"HKCU\Control Panel\Desktop\" /v Win8DpiScaling /t REG_DWORD /d 0 /f",
             "reg add \"HKCU\Control Panel\Desktop\" /v DpiScalingVer /t REG_DWORD /d 256 /f",

@@ -8,7 +8,6 @@ def cleanup_basic_files():
     print("Optymalizacja: Czyszczenie podstawowych plików...")
     subprocess.call('del /f /s /q %temp%', shell=True)  # Usuwanie tymczasowych plików
     subprocess.call('rmdir /s /q %temp%', shell=True)  # Usuwanie folderu Temp
-    # subprocess.call('cleanmgr /sagerun:1', shell=True)  # Uruchomienie narzędzia czyszczącego system
 
 def disable_background_processes():
     print("Optymalizacja: Wyłączanie zbędnych procesów...")
