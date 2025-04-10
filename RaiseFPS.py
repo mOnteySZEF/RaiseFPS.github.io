@@ -12,6 +12,7 @@ import backup
 import socket
 import sys
 import ctypes
+from datetime import datetime
 
 
 def is_admin():
@@ -35,11 +36,28 @@ DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1358464113747165441/a_YT
 
 def send_discord_log(username, action):
     hostname = socket.gethostname()
+    timestamp = datetime.now().strftime("%H:%M:%S %d-%m-%Y")
+
     payload = {
-        "content": f"**Komputer:** {hostname}\n**Akcja:** {action}\n**Użytkownik:** {username}"
+        "embeds": [{
+            "title": "Logi RaiseFPS",
+            "color": 0x00ff00,
+            "thumbnail": {
+                "url": image_url
+            },
+            "fields": [
+                {"name": "Komputer:", "value": hostname, "inline": False},
+                {"name": "Akcja:", "value": action, "inline": False},
+                {"name": "Użytkownik:", "value": username, "inline": False},
+                {"name": "Data i godzina:", "value": timestamp, "inline": False}
+            ],
+        }]
     }
+
     try:
-        requests.post(DISCORD_WEBHOOK_URL, json=payload)
+        response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
+        if response.status_code != 204:
+            print(f"Błąd podczas wysyłania logów na Discord: {response.status_code}")
     except requests.exceptions.RequestException as e:
         print(f"Błąd podczas wysyłania logów na Discord: {e}")
 
