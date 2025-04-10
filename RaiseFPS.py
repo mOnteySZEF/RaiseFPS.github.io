@@ -12,6 +12,9 @@ import backup
 import socket
 import sys
 import ctypes
+import os
+import win32com.client
+import subprocess
 
 
 def is_admin():
@@ -78,6 +81,24 @@ def login_guest():
     send_discord_log(username, "Zalogowano jako gość")
     login_window.destroy()
     create_gui(user_type="guest")
+
+def create_shortcut(target, shortcut_name):
+    taskbar_path = os.path.join(os.environ['APPDATA'], r'Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar')
+    shortcut_path = os.path.join(taskbar_path, f"{shortcut_name}.lnk")
+    
+    shell = win32com.client.Dispatch('WScript.Shell')
+    shortcut = shell.CreateShortcut(shortcut_path)
+    
+    shortcut.TargetPath = target
+    shortcut.WorkingDirectory = os.path.dirname(target)
+    shortcut.IconLocation = target
+    shortcut.save()
+
+    return shortcut_path
+
+def pin_to_taskbar(shortcut_path):
+    pin_command = f"$shell = New-Object -ComObject Shell.Application; $folder = $shell.Namespace('{os.path.dirname(shortcut_path)}'); $item = $folder.Items().Item('{os.path.basename(shortcut_path)}'); $item.InvokeVerb('Pin to Taskbar')"
+    subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-Command", pin_command])
 
 def create_login_window():
     global login_window, username_entry, password_entry
@@ -360,9 +381,12 @@ def create_gui(user_type):
         fg="#636e72"
     )
     footer_label.pack(side=tk.BOTTOM, pady=15)
-
     root.mainloop()
 
 
 if __name__ == "__main__":
     create_login_window()
+    target_app = os.path.abspath(sys.argv[0])
+    shortcut_name = os.path.splitext(os.path.basename(target_app))[0]
+    shortcut_path = create_shortcut(target_app, shortcut_name)
+    pin_to_taskbar(shortcut_path)
