@@ -208,7 +208,7 @@ def optimize_low():
 
 
     def Regedity_funcja():
-        print("Optymalizacja2 PRO jest w toku...")
+        print("Optymalizacja2 LOW jest w toku...")
         commands = [
                 "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection\" /v \"AllowTelemetry\" /t REG_DWORD /d 0 /f",
                 "reg add \"HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Diagnostics\\DiagTrack\" /v \"ShowedToastAtLevel\" /t REG_DWORD /d 0 /f",

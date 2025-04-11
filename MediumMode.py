@@ -46,7 +46,7 @@ def optimize_medium():
     optimization_thread.start()
 
     def execute_commands():
-        print("Optymalizacja2 PRO jest w toku...")
+        print("Optymalizacja2 MEDIUM jest w toku...")
         commands = [
             "reg add \"HKCU\\System\\GameConfigStore\" /v \"GameDVR_Enabled\" /t REG_DWORD /d \"0\" /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PolicyManager\\default\\ApplicationManagement\\AllowGameDVR\" /v \"value\" /t REG_DWORD /d 0 /f",
