@@ -4,6 +4,10 @@ import threading
 from tkinter import messagebox
 import RaiseFPS
 
+proces1 = False
+proces2 = False
+proces3 = False
+
 def cleanup_basic_files():
     print("Optymalizacja: Czyszczenie podstawowych plików...")
     subprocess.call('del /f /s /q %temp%', shell=True)  # Usuwanie tymczasowych plików
@@ -32,8 +36,17 @@ def optimize_power_settings():
     subprocess.call('powercfg /change standby-timeout-ac 0', shell=True)  # Wyłączenie timeoutu ekranu
     subprocess.call('powercfg /change monitor-timeout-ac 0', shell=True)  # Wyłączenie auto-wygaszania ekranu
 
+def check_all_processes_complete():
+    global proces1, proces2, proces3
+    if proces1 and proces2 and proces3:
+        RaiseFPS.stop_loading()
+        restart = messagebox.askyesno("Optymalizacja zakończona!", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
+        if restart:
+            os.system("shutdown /r /t 0")
+
 def optimize_medium():
     def run_optimization():
+        global proces1
         print("Optymalizacja: Medium Mode w toku...")
         cleanup_basic_files()
         disable_background_processes()
@@ -41,11 +54,56 @@ def optimize_medium():
         optimize_registry()
         optimize_power_settings()
 
-        RaiseFPS.stop_loading()
+        proces1 = True
+        check_all_processes_complete()
     optimization_thread = threading.Thread(target=run_optimization)
     optimization_thread.start()
 
+def PowerShell_funcja():
+    global proces2
+    print("Optymalizacja2 PRO jest w toku...")
+    commands = [
+            "PowerShell -Command \"Import-Module -DisableNameChecking $PSScriptRoot\\..\\lib\\force-mkdir.psm1\"",
+            "PowerShell -Command \"force-mkdir 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection'\"",
+            "PowerShell -Command \"Set-ItemProperty 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection' 'AllowTelemetry' 0\"",
+            "PowerShell -Command \"force-mkdir 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR'; Set-ItemProperty 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR' 'AllowgameDVR' 0\"",
+            "PowerShell -Command \"New-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer -Name DisableEdgeDesktopShortcutCreation -PropertyType DWORD -Value 1\""
+            "PowerShell -Command \"Get-AppxPackage *3DBuilder* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Getstarted* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *WindowsAlarms* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *WindowsPhone* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *SkypeApp* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.Xbox.TCUI* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.XboxApp* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.XboxGameCallableUI* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.XboxGameOverlay* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.XboxGamingOverlay* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.XboxIdentityProvider* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.XboxLive* | Remove-AppxPackage\"",
+            "PowerShell -Command \"Get-AppxPackage *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage\"",
+        ]
+
+    for command in commands:
+        try:
+            if command.startswith("PowerShell"):
+                elevated_command = f'powershell -Command "Start-Process cmd -ArgumentList \'/c {command}\' -Verb RunAs"'
+                subprocess.call(elevated_command, shell=True)
+            else:
+                subprocess.call(command, shell=True)
+            print(f"Wykonano: {command}")
+        except Exception as e:
+            print(f"Błąd podczas wykonywania {command}: {str(e)}")
+
+        proces2 = True
+        check_all_processes_complete()
+
+    optimization3_thread = threading.Thread(target=PowerShell_funcja)
+    optimization3_thread.start()
+
     def execute_commands():
+        global proces3
         print("Optymalizacja2 MEDIUM jest w toku...")
         commands = [
             "reg add \"HKCU\\System\\GameConfigStore\" /v \"GameDVR_Enabled\" /t REG_DWORD /d \"0\" /f",
@@ -175,7 +233,6 @@ def optimize_medium():
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableSpyware\" /t REG_DWORD /d 0 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppPrivacy\" /v \"LetAppsSyncWithDevices\" /t REG_DWORD /d 1 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppPrivacy\" /v \"AllowClipboardHistory\" /t REG_DWORD /d 1 /f",
-
         ]
 
         for command in commands:
@@ -188,6 +245,9 @@ def optimize_medium():
                 print(f"Wykonano: {command}")
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
+        
+        proces3 = True
+        check_all_processes_complete()
 
     optimization2_thread = threading.Thread(target=execute_commands)
     optimization2_thread.start()

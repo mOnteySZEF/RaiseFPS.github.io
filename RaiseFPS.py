@@ -211,11 +211,10 @@ def create_login_window():
 
 
 stop_loading_flag = False
+
 def show_loading(level, callback):
     global stop_loading_flag
     stop_loading_flag = False
-
-    loading_time = 10
 
     loading_window = tk.Toplevel()
     loading_window.title("Optymalizacja...")
@@ -256,13 +255,16 @@ def show_loading(level, callback):
     def update_animation():
         for i in range(101):
             if stop_loading_flag:
-                loading_window.destroy()
+                loading_window.destroy() 
                 return
-            progress["value"] = i
+            
+            progress["value"] = i 
             if i % 25 == 0 and i // 25 < len(loading_texts):
                 label.config(text=loading_texts[i // 25])
-            time.sleep(loading_time / 100)
+
             loading_window.update_idletasks()
+
+            time.sleep(0.1)
 
         loading_window.destroy()
         callback()

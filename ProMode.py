@@ -6,6 +6,14 @@ import threading
 import shutil
 import RaiseFPS
 
+proces1 = False
+proces2 = False
+proces3 = False
+proces4 = False
+proces5 = False
+proces6 = False
+proces7 = False
+
 def execute_and_handle_errors(command):
     try:
         subprocess.call(command, shell=True)
@@ -118,8 +126,17 @@ def optimize_power_settings():
     subprocess.call('powercfg /change monitor-timeout-ac 0', shell=True)  # Wyłącz auto-wygaszanie ekranu
     subprocess.call('powercfg /change hibernate-timeout-ac 0', shell=True)  # Wyłącz hibernację
 
+def check_all_processes_complete():
+    global proces1, proces2, proces3, proces4, proces5, proces6, proces7
+    if proces1 and proces2 and proces3 and proces4 and proces5 and proces6 and proces7:
+        RaiseFPS.stop_loading()
+        restart = messagebox.askyesno("Optymalizacja zakończona!", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
+        if restart:
+            os.system("shutdown /r /t 0")
+
 def optimize_pro():
     def run_optimization():
+        global proces1
         print("Optymalizacja: PRO Mode w toku...")
         advanced_cleanup()
         optimize_memory()
@@ -132,14 +149,15 @@ def optimize_pro():
         threshold_RAM()
         optimize_power_settings()
 
-        RaiseFPS.stop_loading()
-        restart = messagebox.askyesno("Restart systemu", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
-        if restart:
-            os.system("shutdown /r /t 0")
+        proces1 = True
+        check_all_processes_complete()
 
     optimization_thread = threading.Thread(target=run_optimization)
     optimization_thread.start()
+
+
     def execute_commands():
+        global proces2
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Error Reporting\" /v Disabled /t REG_DWORD /d 1 /f",
@@ -855,11 +873,15 @@ def optimize_pro():
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
 
+        proces2 = True
+        check_all_processes_complete()
+
     optimization2_thread = threading.Thread(target=execute_commands)
     optimization2_thread.start()
 
 
     def PowerShell_funcja():
+        global proces3
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
             "PowerShell -Command \"Import-Module -DisableNameChecking $PSScriptRoot\\..\\lib\\force-mkdir.psm1\"",
@@ -1026,11 +1048,15 @@ def optimize_pro():
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
 
+        proces3 = True
+        check_all_processes_complete()
+
     optimization3_thread = threading.Thread(target=PowerShell_funcja)
     optimization3_thread.start()
 
 
     def bcdedit_funcja():
+        global proces4
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
             "bcdedit /set disabledynamictick yes > nul",
@@ -1084,11 +1110,15 @@ def optimize_pro():
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
 
+        proces4 = True
+        check_all_processes_complete()
+
     optimization4_thread = threading.Thread(target=bcdedit_funcja)
     optimization4_thread.start()
 
 
     def sc_funcja():
+        global proces5
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
             "sc delete diagnosticshub.standardcollector.service",
@@ -1215,11 +1245,15 @@ def optimize_pro():
                 print(f"Wykonano: {command}")
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
+            
+        proces5 = True
+        check_all_processes_complete()
 
     optimization5_thread = threading.Thread(target=sc_funcja)
     optimization5_thread.start()
 
     def schtasks_funkcja():
+        global proces6
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
             "schtasks /Change /TN \"Microsoft\\Windows\\AppID\\SmartScreenSpecific\" /disable",
@@ -1364,11 +1398,15 @@ def optimize_pro():
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
 
+        proces6 = True
+        check_all_processes_complete()
+
     optimization6_thread = threading.Thread(target=schtasks_funkcja)
     optimization6_thread.start()
 
 
     def inne_funkcje():
+        global proces7
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
             "ipconfig /flushdns",
@@ -1392,6 +1430,9 @@ def optimize_pro():
                 print(f"Wykonano: {command}")
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
+
+        proces7 = True
+        check_all_processes_complete()
 
     optimization99_thread = threading.Thread(target=inne_funkcje)
     optimization99_thread.start()

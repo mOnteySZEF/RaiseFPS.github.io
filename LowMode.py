@@ -6,6 +6,10 @@ import threading
 from tkinter import Tk, messagebox
 import RaiseFPS
 
+proces1 = False
+proces2 = False
+proces3 = False
+
 def empty_recycle_bin():
     try:
         ctypes.windll.shell32.SHEmptyRecycleBinW(None, None, 0x00000007)
@@ -120,9 +124,17 @@ def clean_shadow_copies():
     except Exception:
         pass
 
+def check_all_processes_complete():
+    global proces1, proces2, proces3
+    if proces1 and proces2 and proces3:
+        RaiseFPS.stop_loading()
+        restart = messagebox.askyesno("Optymalizacja zakończona!", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
+        if restart:
+            os.system("shutdown /r /t 0")
 
 def optimize_low():
     def run_optimization():
+        global proces1
         print("Optymalizacja: Low Mode w toku...")
         temp_dirs = [
             os.environ.get('TEMP'),
@@ -163,11 +175,14 @@ def optimize_low():
         # Wyczyść Shadow Copies
         clean_shadow_copies()
 
-        RaiseFPS.stop_loading()
+        proces1 = True
+        check_all_processes_complete()
+
     optimization_thread = threading.Thread(target=run_optimization)
     optimization_thread.start()
 
     def PowerShell_funcja():
+        global proces2
         print("Optymalizacja2 PRO jest w toku...")
         commands = [
             "PowerShell -Command \"Import-Module -DisableNameChecking $PSScriptRoot\\..\\lib\\force-mkdir.psm1\"",
@@ -203,11 +218,15 @@ def optimize_low():
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
 
+        proces2 = True
+        check_all_processes_complete()
+
     optimization3_thread = threading.Thread(target=PowerShell_funcja)
     optimization3_thread.start()
 
 
     def Regedity_funcja():
+        global proces3
         print("Optymalizacja2 LOW jest w toku...")
         commands = [
                 "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection\" /v \"AllowTelemetry\" /t REG_DWORD /d 0 /f",
@@ -248,6 +267,9 @@ def optimize_low():
                 print(f"Wykonano: {command}")
             except Exception as e:
                 print(f"Błąd podczas wykonywania {command}: {str(e)}")
+
+        proces3 = True
+        check_all_processes_complete()
 
     optimization4_thread = threading.Thread(target=Regedity_funcja)
     optimization4_thread.start()
