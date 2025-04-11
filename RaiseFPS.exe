@@ -1,0 +1,574 @@
+
+
+    <!DOCTYPE html>
+    <html lang = "pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Serwer stworzony od graczy dla graczy z myslą o innowacyjnej rozgrywce jak i super zabawie! FazeRP jest to serwer bojówkarski, co znaczy, że grają tu sami aimstarzy i borowiki!">
+    <title>FazeRP | Strona główna</title>
+    <script src="https://kit.fontawesome.com/19fb4a503f.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <link rel="shortcut icon" href="https://i.imgur.com/M0aylNm.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/ui.css">
+    <link rel="stylesheet" href="../cfg/colors.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+
+    <meta name="discord-embed" content='{
+        "title": "FazeRP | Strona główna",
+        "description": "Serwer stworzony od graczy dla graczy z myslą o innowacyjnej rozgrywce jak i super zabawie! FazeRP jest to serwer bojówkarski, co znaczy, że grają tu sami aimstarzy i borowiki!",
+        "url": "http://fazerp.eu",
+        "color": "65535",
+        "thumbnail": {
+          "url": "https://i.imgur.com/M0aylNm.png"
+        }
+    }'>
+
+    <meta property="og:title" content="FazeRP | Strona główna">
+    <meta property="og:description" content="Serwer stworzony od graczy dla graczy z myslą o innowacyjnej rozgrywce jak i super zabawie! FazeRP jest to serwer bojówkarski, co znaczy, że grają tu sami aimstarzy i borowiki!">
+    <meta property="og:image" content="https://i.imgur.com/M0aylNm.png">
+    <meta property="og:url" content="http://fazerp.eu">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FazeRP">
+</head>
+
+    <body>
+    <div class="background" aria-hidden="true"></div>
+    <div class="header">
+            <div class="logo">
+                <a href=''>
+                    <h1>
+                        <div class="after">
+                             <img src="../assets/logo.png" width="250px" height="80px" alt="Logo">
+                        </div>
+                    </h1>
+                </a>
+            </div>
+                <nav>
+                    <ul class="index-ul">
+                        <li>
+                            <a href="" style="color: var(--color-one); cursor: default; font-weight: 500; font-weight: bold; text-decoration: underline;">
+                                Strona główna                            </a>
+                        </li>
+                        <li>
+                            <a href="../others/shop.php">Sklep</a>
+                        </li>
+                        <li>
+                            <a href="../others/connect.php">Połącz</a>
+                        </li>
+                        <li>
+                            <a href="../others/discord.php">Discord</a>
+                        </li>
+                        <li>
+                            <a href="rules.php">
+                                Regulamin                            </a>
+                    </ul>
+                </nav>
+    
+                    <button class="glow-on-hover">
+                        <a href="../oauth2/init-oauth.php">Zaloguj się <i class="fa-brands fa-discord"></i></a>
+                    </button>            </div>
+        </div>
+    
+<div class="paragraph">    
+    <div class="keyboard">
+        <span class="key">F</span>
+        <span class="key">a</span>
+        <span class="key">z</span>
+        <span class="key">e</span>
+        <span class="key">R</span>
+        <span class="key">P</span>
+    </div>
+        <p>Serwer stworzony od graczy dla graczy z myslą o innowacyjnej rozgrywce jak i super zabawie!<br> FazeRP jest to serwer bojówkarski, co znaczy, że grają tu sami aimstarzy i borowiki!</p>
+            
+        <div class="button-container">
+            <button class="shop-button" onclick="window.open('https://indrop.eu/s/fazerp', '_blank')">
+                <span class="material-symbols-outlined">storefront</span>
+                 <span class="tooltip">Sklep FazeRP</span>
+            </button>
+            <button class="connect-button" onclick="window.open('https://cfx.re/join/kybv8a', '_blank')">
+                Dołącz na Serwer
+            </button>
+            <button class="shop-button" onclick="window.open('https://discord.gg/fazerp', '_blank')">
+            <svg xmlns="http://www.w3.org/2000/svg" height="14" width="17.5" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#555555" d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"/></svg>            <span class="tooltip">Discord FazeRP</span>
+            </button>
+        </div>
+        </div>
+
+
+    <div class="container-glowna" data-aos="fade">
+        <div class="glowna">
+            <h1>Najlepszy serwer<br>fivem w Polsce</h1>
+            <p>Dołącz do naszej dynamicznej społeczności na serwerze FiveM! <br> Codziennie wielu graczy cieszy się niezapomnianymi przygodami i emocjonującymi rozgrywkami. <br> Nie zwlekaj, dołącz do nas już teraz i stań się częścią naszej historii!</p>
+            <button class="polacz-button"  onclick="window.open('https://cfx.re/join/kybv8a', '_blank')">Połącz się z serwerem</button>
+        </div>
+        <div class="zdjecia">
+            <img data-aos="slide-left" src="../assets/foto.png" width="450px" height="400px" alt="Logo">
+        </div>
+    </div>
+    <hr class="custom-hr">
+
+    <div data-aos="fade" class="faq-box">
+    <h1>Najczęściej zadawane Pytania</h1>
+    <div class="faq-container">
+        <div data-aos="slide-right" class="faq-help">
+            <div class="faq-help-text">
+                <p>Nie znalazłeś odpowiedzi na swoje pytanie?</p>
+                <button class="faq-help-button" onclick="window.open('https://discord.gg/fazerp', '_blank')"> 
+                    Porozmawiajmy!</button>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak dołączyć do serwera?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Aby dołączyć do serwera, wejdz do fivema kliknij "F8" i wpisz 
+                        
+                        <a href="https://cfx.re/join/kybv8a" target="_blank">connect fazerp.eu</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak zdobyć swoje pierwsze przedmioty?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Co 12 godzin masz możliwość odebrania kitu pod komendą /kit start, który posiada wszystkie potrzebne itemki do rozpoczęcia gry.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak dołączyć do administracji?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                 <p>
+                    Aby dołączyć do administracji należy 
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeR11JkyuwdyBmsM5fXnqQkU-nEvQEV1qIIxusqj6zLwHIDRA/viewform?usp=sharing" target="_blank">napisać podanie</a>, 
+                    lub 
+                        <a href="https://indrop.eu/s/fazerp" target="_blank">kupić rangę w sklepie</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak założyć organizację?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                 <p>
+                 Aby założyć organizację musisz utworzyć Discorda ekipowego i zebrać 6 osób. Wtedy, musisz wypełnić podanie na 
+                        <a href="https://discord.gg/x8E3VUqd5p" target="_blank">Discordzie Crimowym</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak wzbogacić się na serwerze?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Najlepszym sposobem na zarobek jest branie udziału w strzelaninach poprzez eliminacje graczy np. na dokach. Dobrym też rozwiązaniem są prace legalne, duelki, napady itp. <br>
+                    A jeśli chcesz inwestować swoje pieniądze to użyj komendy /koparka.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak wystawić rzeczy na market?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Menu Rynku otwiera sie pod /market. Możesz tam wystawić przedmioty i pojazdy.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak zdobyć swój pierwszy pojazd?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Po utworzeniu postaci możesz użyć komendy /odbierzauto oraz /skrzynki za które możesz zakupić CarCase, gdzie możesz wylosować swój pojazd.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak odebrać nagrody za spędzony czas na serwerze?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Co podaną ilość godzin możesz odebrać nagrody pod komendą /nagrody.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Jak zagrać bitki hostowane?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Aby rozpocząć wyszukiwać hosta musisz posiadać minimum 3 osób, po zebraniu wymaganej ilości osób dodajesz ich pod F4 na Lotni Sandy.
+                        <a href="https://www.tiktok.com/@fazerp.eu/video/7418648361508687126">Tu cały tutorial</a>
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Na serwerze masz mało FPS?</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Wpisz komendę /fps, która powinna zwiększyć wydajność twojej gry.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<hr class="custom-hr">
+<div data-aos="fade" class="section-3">
+<div style="width: 100%; height: fit-content; margin: 50px 0 0 0;">
+    <div class="about-title founders">Founders</div>
+    <div class="about-boxes">
+        <div class="about-box">
+            <div class="about-box-inner">
+                <div class="about-box-front">
+                    <div class="about-avatar" style="background-image: url('../assets/zarzad/mOntey.gif')"></div>
+                    <div class="text fly-in" id="animated-text" data-text="mOntey"></div>
+                </div>
+                <div class="about-box-back">
+                    <div class="about-box-back-bg"></div>
+                    <div class="about-back-text">
+                        <!-- Particle background container -->
+                        <div class="particle-container">
+                            <div id="particles-js"></div>
+                            <!-- Typing animation -->
+                            <div class="customText">
+                                <br>
+                                <p>BO$$, Dev</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-back-contact">
+                        <a href="https://discord.com/users/775425961197043792" target="_blank">monteyszef</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="about-box">
+                <div class="about-box-inner">
+                    <div class="about-box-front">
+                        <div class="about-avatar" style="background-image: url('../assets/zarzad/Nillu.png')"></div>
+                        <div class="about-name">NiLuu</div>
+                    </div>
+                    <div class="about-box-back">
+                        <div class="about-box-back-bg"></div>
+                        <div class="about-back-text">"V-Chef FazeRP"</div>
+                        <div class="about-back-contact">
+                            <a href="https://discord.com/users/572432216102273044" target="_blank">niluu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about-title ceo">CEO</div>
+        <div class="about-boxes">
+            <div class="about-box bartus">
+                <div class="about-box-inner">
+                    <div class="about-box-front">
+                        <div class="about-avatar" style="background-image: url('../assets/zarzad/Bartolinski.gif')"></div>
+                        <div class="about-name bartus">Bartolinski</div>
+                    </div>
+                    <div class="about-box-back">
+                    <div class="about-box-back-bg"></div>
+                    <canvas id="test"></canvas>
+                    <div class="text-animation">Web, Discord Bot Developer</div>
+                    <div class="about-back-contact bartus">
+                        <a href="https://discord.com/users/717048566396354582" target="_blank">.bartolinski</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<hr class="nowy-hr">
+
+<div class="koncowka">
+    <div class="koncowka-tekst">
+        <h1>Potrzebujesz pomocy?</h1>
+        <h2>Jeśli masz jakiś problem bądź pytanie zapraszamy Cię do napisania<br>
+        ticket'u na naszym Discordzie</h2>
+        <button class="discord-button" onclick="window.open('https://discord.gg/fazerp', '_blank')">
+            Discord
+        </button>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                answer.classList.toggle('active');
+                const arrow = item.querySelector('.material-symbols-outlined');
+                arrow.textContent = answer.classList.contains('active') ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+            });
+        });
+    });
+</script>
+
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("avatarMenu");
+        menu.classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.avatar')) {
+            var dropdowns = document.getElementsByClassName("avatar-menu");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+  const textElement = document.getElementById('animated-text');
+  const text = textElement.getAttribute('data-text');
+
+  textElement.innerHTML = text.split('').map(letter => `<i>${letter}</i>`).join('');
+
+  setTimeout(() => {
+    textElement.classList.remove('fly-in');
+    textElement.classList.add('glitch');
+    textElement.innerHTML = text; 
+  }, 3000); 
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const textElement = document.querySelector(".text-animation");
+        const aboutBoxInner = document.querySelector(".about-box-back");
+        let text = textElement.innerHTML;
+
+        textElement.innerHTML = text.split('').map(char => {
+            if (char === ' ') {
+                return '<span class="space"> </span>';
+            }
+            return `<span>${char}</span>`;
+        }).join('');
+
+        const spans = textElement.querySelectorAll(".text-animation span");
+        spans.forEach((span, index) => {
+            const randomX = (Math.random() * 2 - 1) * window.innerWidth * 1 + 'px';
+            const randomY = (Math.random() * 2 - 1) * window.innerHeight * 1 + 'px';
+            const randomRotation = Math.random() * 720 + 'deg';
+
+            span.style.setProperty('--random-x', randomX);
+            span.style.setProperty('--random-y', randomY);
+            span.style.setProperty('--random-rotation', randomRotation);
+
+            span.style.animationDelay = `${1 * 0.5}s`;
+        });
+    });
+    </script>
+
+<script>
+    particlesJS('particles-js', {
+        particles: {
+            number: {
+                value: 80,
+                density: { enable: true, value_area: 800 }
+            },
+            color: { value: '#ffffff' },
+            shape: {
+                type: 'circle',
+                stroke: { width: 0, color: '#000000' }
+            },
+            opacity: {
+                value: 0.5,
+                random: false,
+                anim: { enable: false }
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: { enable: false }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#ffffff',
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+                attract: { enable: false }
+            }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: { enable: true, mode: 'repulse' },
+                onclick: { enable: true, mode: 'push' },
+                resize: true
+            },
+            modes: {
+                grab: { distance: 200, line_linked: { opacity: 1 } },
+                bubble: { distance: 200, size: 40, duration: 2, opacity: 8 },
+                repulse: { distance: 100, duration: 0.4 },
+                push: { particles_nb: 4 },
+                remove: { particles_nb: 2 }
+            }
+        },
+        retina_detect: true
+    });
+</script>
+
+
+
+<script>
+    var w = window.innerWidth,
+    h = window.innerHeight,
+    canvas = document.getElementById('test'),
+    ctx = canvas.getContext('2d'),
+    rate = 60,
+    arc = 100,
+    time,
+    count,
+    size = 5,
+    speed = 20,
+    parts = new Array,
+    colors = ['#4D7EE8','red', 'orange','yellow','green', 'purple', 'pink', 'brown', 'white', 'gold', 'silver'];
+var mouse = { x: 0, y: 0 };
+
+canvas.setAttribute('width',w);
+canvas.setAttribute('height',h);
+
+function create() {
+  time = 0;
+  count = 0;
+
+  for(var i = 0; i < arc; i++) {
+    parts[i] = {
+      x: Math.ceil(Math.random() * w),
+      y: Math.ceil(Math.random() * h),
+      toX: Math.random() * 5 - 1,
+      toY: Math.random() * 2 - 1,
+      c: colors[Math.floor(Math.random()*colors.length)],
+      size: Math.random() * size
+    }
+  }
+}
+
+function particles() {
+  ctx.clearRect(0,0,w,h);
+   canvas.addEventListener('mousemove', MouseMove, false);
+  for(var i = 0; i < arc; i++) {
+    var li = parts[i];
+    var distanceFactor = DistanceBetween( mouse, parts[i] );
+    var distanceFactor = Math.max( Math.min( 1 - ( distanceFactor / 10 ), 10 ), 1 );
+    ctx.beginPath();
+    ctx.arc(li.x,li.y,li.size*distanceFactor,0,Math.PI*2,false);
+    ctx.fillStyle = li.c;
+    ctx.strokeStyle=li.c;
+    if(i%2==0)
+      ctx.stroke();
+    else
+      ctx.fill();
+    
+    li.x = li.x + li.toX * (time * 0.05);
+    li.y = li.y + li.toY * (time * 0.05);
+    
+    if(li.x > w){
+       li.x = 0; 
+    }
+    if(li.y > h) {
+       li.y = 0; 
+    }
+    if(li.x < 0) {
+       li.x = w; 
+    }
+    if(li.y < 0) {
+       li.y = h; 
+    }
+   
+     
+  }
+  if(time < speed) {
+    time++;
+  }
+  setTimeout(particles,1000/rate);
+}
+function MouseMove(e) {
+   mouse.x = e.layerX;
+   mouse.y = e.layerY;
+}
+function DistanceBetween(p1,p2) {
+   var dx = p2.x-p1.x;
+   var dy = p2.y-p1.y;
+   return Math.sqrt(dx*dx + dy*dy);
+}
+create();
+particles();
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+            duration: 2000, // Czas trwania animacji w ms
+            offset: 160,   // Offset od góry trony
+            once: false     // Animacja wykona się tylko raz
+        });
+    });
+</script>
+
+<footer class="footer glowna">
+  <div class="socials">
+    <a href="https://discord.gg/fazerp">
+      <img src="https://static.vecteezy.com/system/resources/previews/018/930/718/non_2x/discord-logo-discord-icon-transparent-free-png.png" alt="Discord" />
+    </a>
+    <a href="https://www.tiktok.com/@fazerp.eu">
+      <img src="https://static.vecteezy.com/system/resources/previews/016/716/450/non_2x/tiktok-icon-free-png.png" alt="TikTok" />
+    </a>
+    <a href="https://indrop.gg/s/fazerp" >
+      <img style="border-radius: 30px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq-MnmTbvqIQRzMYAsg4UpArCXjICzn5UXSQ&s" alt="Indrop" />
+    </a>
+  </div>
+  <div class="links">
+    <a href="">Strona główna</a>
+    <a href="https://indrop.eu/s/fazerp">Sklep</a>
+    <a href="https://cfx.re/join/kybv8a">Połącz</a>
+    <a href="https://discord.gg/fazerp">Discord</a>
+    <a href="rules.php">Regulamin</a>
+  </div>
+  <p><center>Made with ❤️ | FazeRP ©2025</center></p>
+</footer>
+<script src="js/security.js"></script>
+    </body>
+    </html>

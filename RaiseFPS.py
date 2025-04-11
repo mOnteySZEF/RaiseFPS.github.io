@@ -76,6 +76,49 @@ def get_login_data():
         messagebox.showerror("Błąd", f"Problem z połączeniem: {e}")
         return None
 
+
+version_url = "http://fazerp.eu/RaiseFPSversion.txt"
+update_url = "http://fazerp.eu/RaiseFPS.exe"
+local_update_path = "RaiseFPS.exe"
+
+def check_for_update():
+    response = requests.get(version_url)
+    if response.status_code == 200:
+        version_text = response.text.strip()
+        if "update" in version_text.lower():
+            print("Znaleziono aktualizację.")
+            messagebox.showinfo("UPDATE", "Znaleziono aktualizację.")
+            download_update()
+    else:
+        print("Nie można pobrać wersji.")
+        messagebox.showinfo("UPDATE", "Nie można pobrać wersji.")
+        time.sleep(5)
+        sys.exit()
+
+def download_update():
+    response = requests.get(update_url)
+    if response.status_code == 200:
+        with open(local_update_path, 'wb') as update_file:
+            update_file.write(response.content)
+        print("Pobrano aktualizację.")
+        messagebox.showinfo("UPDATE", "Pobrano aktualizację.")
+        install_update()
+    else:
+        print("Nie można pobrać aktualizacji.")
+        messagebox.showinfo("UPDATE", "Nie można pobrać aktualizacji.")
+        time.sleep(5)
+        sys.exit()
+
+def install_update():
+    subprocess.run([local_update_path])
+    print("Zainstalowano aktualizację.")
+    messagebox.showinfo("UPDATE", "Zainstalowano aktualizację.")
+    time.sleep(8)
+    sys.exit()
+
+check_for_update()
+
+
 def login():
     username = username_entry.get()
     password = password_entry.get()
