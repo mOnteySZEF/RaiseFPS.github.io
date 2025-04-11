@@ -825,8 +825,6 @@ def optimize_pro():
             "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\USB\\Parameters\" /v \"ForceHCResetOnResume\" /t REG_DWORD /d 1 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\USB\" /v \"DisableSelectiveSuspend\" /t REG_DWORD /d 1 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\USBXHCI\\Parameters\" /v \"DisableSelectiveSuspend\" /t REG_DWORD /d 1 /f",
-
-
             "reg add \"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\" /v \"NoDriveTypeAutoRun\" /t REG_DWORD /d \"0x000000FF\" /f",
 
             "reg add \"HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\" /v \"NoDriveTypeAutoRun\" /t REG_DWORD /d \"0x000000FF\" /f",     
