@@ -415,8 +415,8 @@ def create_gui(user_type):
                 button['fg'] = text_color
 
         def on_disabled():
-            button['bg'] = "#BDC3C7"
-            button['fg'] = "#7F8C8D"
+            button['bg'] = "#2E5862"
+            button['fg'] = "#b2bec3"
 
         if state == "disabled":
             on_disabled()
