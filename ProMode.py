@@ -768,7 +768,7 @@ def optimize_pro():
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SVCHOST\" /v \"SharedSection\" /t REG_MULTI_SZ /d \"1024,3072,512\" /f",
             "reg add \"HKEY_CURRENT_USER\\Control Panel\\Desktop\" /v \"ScreenSaveActive\" /t REG_SZ /d \"0\" /f",
             "reg add \"HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\" /v \"TaskbarAnimations\" /t REG_DWORD /d 0 /f",
-            "reg add \"HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects\" /v \"TaskbarAnimations\" /t REG_DWORD /d 0 /f",
+            "reg add \"HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects\" /v \"TaskbarAnimations\" /t REG_DWORD /d 0 /f",++
             "reg add \"HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects\" /v \"WindowAnimations\" /t REG_DWORD /d 0 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Search\" /v \"SetupCompleted\" /t REG_DWORD /d 0 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\" /v \"ErrorMode\" /t REG_DWORD /d 1 /f",
@@ -1091,8 +1091,6 @@ def optimize_pro():
             "bcdedit /set msisupported Yes > nul",
             "bcdedit /set recoveryenabled No > nul",
             "bcdedit /set testsigning on > nul",
-            "bcdedit /set numproc 1 > nul",
-            "bcdedit /set kernel debugging on > nul"
             ]
 
         for command in commands:
