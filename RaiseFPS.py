@@ -137,7 +137,7 @@ def login():
         messagebox.showerror("Błąd", "Błędny login lub hasło.")
 
 def login_guest():
-    username = "Gość"  # Gość nie ma loginu
+    username = "Gość" 
     messagebox.showinfo("Login", "Zalogowano jako gość!")
     send_discord_log(username, "Zalogowano jako gość")
     login_window.destroy()
@@ -196,6 +196,7 @@ def create_login_window():
         font=("Verdana", 14),
         bg="#2C3E50",
         fg="white",
+        insertbackground="white",
         relief="flat",
         width=25
     )
@@ -214,6 +215,7 @@ def create_login_window():
         font=("Verdana", 14),
         bg="#2C3E50",
         fg="white",
+        insertbackground="white",
         relief="flat",
         width=25,
         show="*"
@@ -243,7 +245,6 @@ def create_login_window():
     )
     login_button.pack(pady=(20, 10))    
 
-    # === PRZYCISK "Zaloguj jako gość" ===
     guest_button = tk.Button(
         login_window,
         text="Zaloguj jako gość",
@@ -261,7 +262,6 @@ def create_login_window():
     )
     guest_button.pack(pady=(10, 20))    
 
-    # Funkcje hovera
     def on_enter(e):
         original_bg = e.widget['bg']
         darker_bg = darken_color(original_bg, 0.4)
@@ -269,7 +269,6 @@ def create_login_window():
         e.widget['fg'] = "white"    
 
     def on_leave(e):
-        # Przy wyjściu wracamy do oryginalnego koloru
         if e.widget == login_button:
             e.widget['bg'] = "#FFDC57"
             e.widget['fg'] = "black"
@@ -277,7 +276,6 @@ def create_login_window():
             e.widget['bg'] = "#305afc"
             e.widget['fg'] = "black"    
 
-    # Podpinanie hovera
     login_button.bind("<Enter>", on_enter)
     login_button.bind("<Leave>", on_leave)
     guest_button.bind("<Enter>", on_enter)
