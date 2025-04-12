@@ -220,6 +220,12 @@ def create_login_window():
     )
     password_entry.pack(pady=(10, 20))
 
+    def darken_color(hex_color, factor=0.8):
+        hex_color = hex_color.lstrip('#')
+        rgb = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+        darkened = tuple(int(c * factor) for c in rgb)
+        return '#%02x%02x%02x' % darkened
+
     login_button = tk.Button(
         login_window,
         text="Zaloguj",
@@ -230,25 +236,52 @@ def create_login_window():
         activeforeground="white",
         font=("Verdana", 14, "bold"),
         relief="flat",
+        bd=0,
         padx=40,
-        pady=10
+        pady=10,
+        highlightthickness=0,
     )
-    login_button.pack(pady=(20, 10))
+    login_button.pack(pady=(20, 10))    
 
+    # === PRZYCISK "Zaloguj jako gość" ===
     guest_button = tk.Button(
         login_window,
         text="Zaloguj jako gość",
         command=login_guest,
         bg="#305afc",
         fg="black",
-        activebackground="#201afc",
+        activebackground="#305afc",
         activeforeground="white",
         font=("Verdana", 14, "bold"),
         relief="flat",
+        bd=0,
         padx=40,
-        pady=10
+        pady=10,
+        highlightthickness=0,
     )
-    guest_button.pack(pady=(10, 20))
+    guest_button.pack(pady=(10, 20))    
+
+    # Funkcje hovera
+    def on_enter(e):
+        original_bg = e.widget['bg']
+        darker_bg = darken_color(original_bg, 0.4)
+        e.widget['bg'] = darker_bg
+        e.widget['fg'] = "white"    
+
+    def on_leave(e):
+        # Przy wyjściu wracamy do oryginalnego koloru
+        if e.widget == login_button:
+            e.widget['bg'] = "#FFDC57"
+            e.widget['fg'] = "black"
+        elif e.widget == guest_button:
+            e.widget['bg'] = "#305afc"
+            e.widget['fg'] = "black"    
+
+    # Podpinanie hovera
+    login_button.bind("<Enter>", on_enter)
+    login_button.bind("<Leave>", on_leave)
+    guest_button.bind("<Enter>", on_enter)
+    guest_button.bind("<Leave>", on_leave)
 
     login_window.mainloop()
 
