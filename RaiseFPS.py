@@ -436,9 +436,10 @@ def create_gui(user_type):
     backup_button.pack(pady=10, fill=tk.X, padx=10)
     backup_button.config(fg='white', height=1)
 
+    timestamp = datetime.now().strftime("%Y")
     footer_label = tk.Label(
         root,
-        text="© 2025 RaiseFPS",
+        text=f"© {timestamp} RaiseFPS",
         font=("Verdana", 10),
         bg=bg_color,
         fg="#636e72"
