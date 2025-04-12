@@ -64,10 +64,6 @@ def disable_background_processes():
     for process in processes:
         subprocess.call(f"taskkill /f /im {process}", shell=True)
 
-def optimize_drivers():
-    print("Optymalizacja: Optymalizacja sterowników...")
-    subprocess.call("devmgmt.msc", shell=True)  # Otwórz Menedżer urządzeń do aktualizacji sterowników
-
 def optimize_registry():
     print("Optymalizacja: Optymalizacja ustawień rejestru...")
     subprocess.call('reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "ThumbnailCacheSize" /t REG_DWORD /d 0 /f', shell=True)  # Usuwanie cache miniatur
@@ -87,9 +83,6 @@ def disable_services():
     subprocess.call('sc stop "bits"', shell=True)  # Usługi BITS
     subprocess.call('sc config "bits" start= disabled', shell=True)
 
-def wingetupgrade():
-    print("Optymalizacja: Aktulizowanie aplikacji...")
-    subprocess.call('winget upgrade --all --accept-source-agreements --silent'),
 
 def threshold_RAM():
     ram = psutil.virtual_memory().total / (1024 * 1024 * 1024)  # GB
@@ -141,7 +134,6 @@ def optimize_pro():
         advanced_cleanup()
         optimize_memory()
         disable_background_processes()
-        optimize_drivers()
         optimize_registry()
         optimize_gaming()
         disable_services()
