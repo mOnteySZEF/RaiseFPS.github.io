@@ -11,6 +11,7 @@ def backup(description):
 
     if not is_system_protection_enabled():
         messagebox.showerror("Błąd", "Ochrona systemu nie jest włączona. Aby stworzyć punkt przywracania, musisz włączyć ochronę systemu.")
+        messagebox.showerror("Błąd", "Masz wyłączoną możliwość tworzenia punktów przywracania! Aby stworzyć punkt przywracania, musisz ją włączyć.")
         return
 
     threading.Thread(target=run_backup, args=(description,)).start()

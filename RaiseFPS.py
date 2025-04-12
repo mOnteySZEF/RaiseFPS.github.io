@@ -85,14 +85,9 @@ def check_for_update():
     response = requests.get(version_url)
     if response.status_code == 200:
         version_text = response.text.strip()
-        if "update" in version_text.lower():
-            print("Znaleziono aktualizację.")
-            messagebox.showinfo("UPDATE", "Znaleziono aktualizację.")
-            download_update()
+        if not "beta" in version_text.lower():
+          sys.exit()
     else:
-        print("Nie można pobrać wersji.")
-        messagebox.showinfo("UPDATE", "Nie można pobrać wersji.")
-        time.sleep(5)
         sys.exit()
 
 def download_update():
