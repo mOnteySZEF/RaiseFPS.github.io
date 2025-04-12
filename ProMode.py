@@ -623,7 +623,6 @@ def optimize_pro():
             "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\WMI\\AutoLogger\\AutoLogger-Diagtrack-Listener\" /v \"Start\" /t REG_DWORD /d 0 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config\" /v \"AutoConnectAllowedOEM\" /t REG_DWORD /d 0 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\WcmSvc\\Tethering\" /v \"Hotspot2SignUp\" /t REG_DWORD /d 1 /f",
-            "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\WlanSvc\\AnqpCache\" /v \"OsuRegistrationStatus\" /t REG_DWORD /d 0 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\WcmSvc\\Tethering\" /v \"RemoteStartupDisabled\" /t REG_DWORD /d 1 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\Connect\" /v \"AllowProjectionToPC\" /t REG_DWORD /d 0 /f",
             "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\System\" /v \"EnableMmx\" /t REG_DWORD /d 0 /f",
