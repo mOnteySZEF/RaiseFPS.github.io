@@ -13,7 +13,6 @@ proces3 = False
 proces4 = False
 proces5 = False
 proces6 = False
-proces7 = False
 
 def execute_and_handle_errors(command):
     try:
@@ -181,8 +180,8 @@ def optimize_power_settings():
     subprocess.call('powercfg /change hibernate-timeout-ac 0', shell=True)  # Wyłącz hibernację
 
 def check_all_processes_complete():
-    global proces1, proces2, proces3, proces4, proces5, proces6, proces7
-    if proces1 and proces2 and proces3 and proces4 and proces5 and proces6 and proces7:
+    global proces1, proces2, proces3, proces4, proces5, proces6
+    if proces1 and proces2 and proces3 and proces4 and proces5 and proces6:
         RaiseFPS.stop_loading()
         restart = messagebox.askyesno("Optymalizacja zakończona!", "Aby wprowadzić wszystkie zmiany, zalecany jest restart.\nCzy chcesz teraz ponownie uruchomić komputer?")
         if restart:
