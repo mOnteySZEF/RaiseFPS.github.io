@@ -635,36 +635,36 @@ def optimize_pro():
             'sc config vmicguestinterface start= manual',
             'sc config vmicheartbeat start= manual',
             'sc config vmickvpexchange start= manual',
-
+            
             'sc config vmicrdv start= manual',
-            'sc config vmicshutdown start= manual'
-            'sc config vmictimesync start= manual'
-            'sc config vmicvmsession start= manual'
-            'sc config vmicvss start= manual'
-            'sc config vmvss start= manual'
-            'sc config wbengine start= manual'
-            'sc config wcncsvc start= manual'
-            'sc config webthreatdefsvc start= manual'
-            'sc config wercplsupport start= manual'
-            'sc config wisvc start= manual'
+            'sc config vmicshutdown start= manual',
+            'sc config vmictimesync start= manual',
+            'sc config vmicvmsession start= manual',
+            'sc config vmicvss start= manual',
+            'sc config vmvss start= manual',
+            'sc config wbengine start= manual',
+            'sc config wcncsvc start= manual',
+            'sc config webthreatdefsvc start= manual',
+            'sc config wercplsupport start= manual',
+            'sc config wisvc start= manual',
             'sc config wlidsvc start= manual',
-            'sc config wlpasvc start= manual'
-            'sc config wmiApSrv start= manual'
-            'sc config workfolderssvc start= manual'
-            'sc config wscsvc start= delayed-auto'
-            'sc config wuauserv start= manual'
-            'sc config wudfsvc start= manual'
+            'sc config wlpasvc start= manual',
+            'sc config wmiApSrv start= manual',
+            'sc config workfolderssvc start= manual',
+            'sc config wscsvc start= delayed-auto',
+            'sc config wuauserv start= manual',
+            'sc config wudfsvc start= manual',
 
-            'sc config AGSService start= disabled'
-            'sc config AGMService start= disabled'
-            'sc config AdobeUpdateService start= manual'
-            'sc config "Adobe Acrobat Update" start= demand'
-            'sc config "Adobe Genuine Monitor Service" start= disabled'
-            'sc config AdobeARMservice start= manual'
-            'sc config "Adobe Licensing Console" start= manual'
-            'sc config CCXProcess start= manual'
-            'sc config AdobeIPCBroker start= manual'
-            'sc config CoreSync start= manual'
+            'sc config AGSService start= disabled',
+            'sc config AGMService start= disabled',
+            'sc config AdobeUpdateService start= manual',
+            'sc config "Adobe Acrobat Update" start= demand',
+            'sc config "Adobe Genuine Monitor Service" start= disabled',
+            'sc config AdobeARMservice start= manual',
+            'sc config "Adobe Licensing Console" start= manual',
+            'sc config CCXProcess start= manual',
+            'sc config AdobeIPCBroker start= manual',
+            'sc config CoreSync start= manual',
             ]
 
         for command in commands:
@@ -747,10 +747,6 @@ def optimize_pro():
             "schtasks /Change /TN \"Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector\" /Disable",
             "schtasks /Change /TN \"Microsoft\\Windows\\DiskFootprint\\Diagnostics\" /Disable",
             "schtasks /Change /TN \"Microsoft\\Windows\\DiskFootprint\\StorageSense\" /Disable",
-<<<<<<< Updated upstream
-=======
-            # "schtasks /Change /TN \"Microsoft\\Windows\\DUSM\\dusmtask\" /Disable",
->>>>>>> Stashed changes
             "schtasks /Change /TN \"Microsoft\\Windows\\EnterpriseMgmt\\MDMMaintenenceTask\" /Disable",
             "schtasks /Change /TN \"Microsoft\\Windows\\Feedback\\Siuf\\DmClient\" /Disable",
             "schtasks /end /tn \"Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload",
@@ -821,19 +817,18 @@ def optimize_pro():
             "schtasks /end /tn \"\Microsoft\\Office\\OfficeTelemetryAgentLogOn\"",
             "schtasks /change /tn \"\Microsoft\\Office\\OfficeTelemetryAgentLogOn\" /disable",
 
-            'schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Application Experience\ProgramDataUpdater" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Autochk\Proxy" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClient" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Windows Error Reporting\QueueReporting" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Application Experience\MareBackup" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Application Experience\StartupAppTask" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Application Experience\PcaPatchDbTask" /Disable'
-            'schtasks /Change /TN "Microsoft\Windows\Maps\MapsUpdateTask" /Disable'
+            'schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Application Experience\ProgramDataUpdater" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClient" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Windows Error Reporting\QueueReporting" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Application Experience\MareBackup" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Application Experience\StartupAppTask" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Application Experience\PcaPatchDbTask" /Disable',
+            'schtasks /Change /TN "Microsoft\Windows\Maps\MapsUpdateTask" /Disable',
             ]
 
         for command in commands:
