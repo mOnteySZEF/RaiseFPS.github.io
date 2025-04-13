@@ -747,6 +747,10 @@ def optimize_pro():
             "schtasks /Change /TN \"Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector\" /Disable",
             "schtasks /Change /TN \"Microsoft\\Windows\\DiskFootprint\\Diagnostics\" /Disable",
             "schtasks /Change /TN \"Microsoft\\Windows\\DiskFootprint\\StorageSense\" /Disable",
+<<<<<<< Updated upstream
+=======
+            # "schtasks /Change /TN \"Microsoft\\Windows\\DUSM\\dusmtask\" /Disable",
+>>>>>>> Stashed changes
             "schtasks /Change /TN \"Microsoft\\Windows\\EnterpriseMgmt\\MDMMaintenenceTask\" /Disable",
             "schtasks /Change /TN \"Microsoft\\Windows\\Feedback\\Siuf\\DmClient\" /Disable",
             "schtasks /end /tn \"Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload",
