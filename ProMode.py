@@ -891,7 +891,6 @@ def optimize_pro():
         'reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "StartMenuAnimation" /t REG_DWORD /d 0 /f',
         'reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "TcpTimedWaitDelay" /t REG_DWORD /d 30 /f',
         'reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\SettingSync" /v "BackgroundTimer" /t REG_DWORD /d 0 /f',
-        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policy\System" /v "EnableLUA" /t REG_DWORD /d 0 /f',
         'reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /ve /t REG_SZ /d "" /f',
         'reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /t REG_SZ /d "" /f',
         'reg add "HKEY_CURRENT_USER\Control Panel\Colors" /v "Background" /t REG_SZ /d "0 0 0" /f',
@@ -932,8 +931,17 @@ def optimize_pro():
         'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" /v TdrLevel /t REG_DWORD /d 0 /f',
         'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" /v TdrDelay /t REG_DWORD /d 10 /f',
         'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" /v TdrDdiDelay /t REG_DWORD /d 10 /f',
-
-
+        'reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "MenuShowDelay" /t REG_DWORD /d 0 /f',
+        'reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "VisualFXSetting" /t REG_DWORD /d 2 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting" /v "Disabled" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d 26 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "LatencySensitive" /t REG_SZ /d "True" /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Search" /v "SetupCompleted" /t REG_DWORD /d 0 /f',
+        'reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Winlogon" /v "UseOLEDTaskbarTransparency" /t REG_DWORD /d 0 /f',
+        'reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "StartupApp" /t REG_SZ /d "" /f',
+        'reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v "SMB1" /t REG_DWORD /d 0 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v "EnableCaching" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile" /v "EnableFirewall" /t REG_DWORD /d 0 /f',
     
     ]
 
