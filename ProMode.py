@@ -3,6 +3,7 @@ import os
 import psutil
 from tkinter import messagebox
 import threading
+import xml.etree.ElementTree as ET
 import shutil
 import RaiseFPS
 
@@ -58,6 +59,65 @@ def fivem_cache():
         except Exception as e:
             print(f"Błąd przy usuwaniu {full_path}: {str(e)}")
 
+def changeSettingsGTAV():
+    user_profile = os.environ.get('USERPROFILE') 
+    settings_file = os.path.join(user_profile, 'Documents', 'Rockstar Games', 'GTA V', 'settings.xml')
+
+    if os.path.exists(settings_file):
+        tree = ET.parse(settings_file)
+        root = tree.getroot()
+        graphics = root.find('graphics')
+    
+        graphics.find('Tessellation').set('value', '0')
+        graphics.find('LodScale').set('value', '0.500000')
+        graphics.find('PedLodBias').set('value', '0.000000')
+        graphics.find('VehicleLodBias').set('value', '0.000000')
+        graphics.find('ShadowQuality').set('value', '0')
+        graphics.find('ReflectionQuality').set('value', '0')
+        graphics.find('ReflectionMSAA').set('value', '0')
+        graphics.find('SSAO').set('value', '0')
+        graphics.find('AnisotropicFiltering').set('value', '0')
+        graphics.find('MSAA').set('value', '0')
+        graphics.find('MSAAFragments').set('value', '0')
+        graphics.find('MSAAQuality').set('value', '0')
+        graphics.find('SamplingMode').set('value', '0')
+        graphics.find('TextureQuality').set('value', '1')
+        graphics.find('ParticleQuality').set('value', '0')
+        graphics.find('WaterQuality').set('value', '0')
+        graphics.find('GrassQuality').set('value', '0')
+        graphics.find('ShaderQuality').set('value', '0')
+        graphics.find('Shadow_SoftShadows').set('value', '0')
+        graphics.find('UltraShadows_Enabled').set('value', 'false')
+        graphics.find('Shadow_ParticleShadows').set('value', 'false')
+        graphics.find('Shadow_Distance').set('value', '0.500000')
+        graphics.find('Shadow_LongShadows').set('value', 'false')
+        graphics.find('Shadow_SplitZStart').set('value', '0.930000')
+        graphics.find('Shadow_SplitZEnd').set('value', '0.890000')
+        graphics.find('Shadow_aircraftExpWeight').set('value', '0.990000')
+        graphics.find('Shadow_DisableScreenSizeCheck').set('value', 'true')
+        graphics.find('Reflection_MipBlur').set('value', 'false')
+        graphics.find('FXAA_Enabled').set('value', 'false')
+        graphics.find('TXAA_Enabled').set('value', 'false')
+        graphics.find('Lighting_FogVolumes').set('value', 'false')
+        graphics.find('Shader_SSA').set('value', 'false')
+        graphics.find('DX_Version').set('value', '2')
+        graphics.find('CityDensity').set('value', '0.500000')
+        graphics.find('PedVarietyMultiplier').set('value', '0.500000')
+        graphics.find('VehicleVarietyMultiplier').set('value', '0.500000')
+        graphics.find('PostFX').set('value', '0')
+        graphics.find('DoF').set('value', 'false')
+        graphics.find('HdStreamingInFlight').set('value', 'false')
+        graphics.find('MaxLodScale').set('value', '0.100000')
+        graphics.find('MotionBlurStrength').set('value', '0.000000')    
+
+        video = root.find('video')
+        video.find('VSync').set('value', '0')   
+
+        tree.write(settings_file)  
+
+        print("Ustawienia zostały zmienione na optymalne pod wydajność (FPS).")
+    else:
+        print(f"Plik settings.xml nie został znaleziony w {settings_file}.")
 
 def disable_background_processes():
     print("Optymalizacja: Wyłączanie procesów w tle...")
@@ -141,6 +201,7 @@ def optimize_pro():
         fivem_cache()
         threshold_RAM()
         optimize_power_settings()
+        changeSettingsGTAV()
 
         proces1 = True
         check_all_processes_complete()
@@ -834,6 +895,47 @@ def optimize_pro():
         'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policy\System" /v "EnableLUA" /t REG_DWORD /d 0 /f',
         'reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /ve /t REG_SZ /d "" /f',
         'reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /t REG_SZ /d "" /f',
+        'reg add "HKEY_CURRENT_USER\Control Panel\Colors" /v "Background" /t REG_SZ /d "0 0 0" /f',
+        'reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "Wallpaper" /t REG_SZ /d "" /f',
+        'reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "TileWallpaper" /t REG_SZ /d "0" /f',
+        'reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "WallpaperStyle" /t REG_SZ /d "0" /f',
+
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "PowerMizerEnable" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "PowerMizerDefault" /t REG_DWORD /d 2 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "PowerMizerMaxPerf" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "SyncToVBlank" /t REG_DWORD /d 0 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "MultiGPU" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "AnisotropicFiltering" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_CURRENT_USER\Software\NVIDIA Corporation\Global\NVTweak" /v "MaxPerformance" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_CURRENT_USER\Software\NVIDIA Corporation\Global\NVTweak" /v "PreferMaxPerformance" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_CURRENT_USER\Software\NVIDIA Corporation\Global\NVTweak" /v "AppProfileEnabled" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_CURRENT_USER\Software\NVIDIA Corporation\Global\NVTweak" /v "DisableEffects" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "Direct3D" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "SetColorDepth" /t REG_DWORD /d 1 /f',
+        'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak" /v "GameProfileEnable" /t REG_DWORD /d 1 /f',
+        'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v PowerMizerLevel /t REG_DWORD /d 1 /f',
+        'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v PowerMizerLevelAC /t REG_DWORD /d 1 /f',
+        'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v PerfLevelSrc /t REG_DWORD /d 2 /f',
+        'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v EnablePerfLevelAC /t REG_DWORD /d 1 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v LowLatencyMode /t REG_DWORD /d 2 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v OGL_ThreadControl /t REG_DWORD /d 2 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v TextureFilteringQuality /t REG_DWORD /d 0 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v VSYNCMODE /t REG_DWORD /d 0 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v OGL_TripleBuffer /t REG_DWORD /d 0 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v FlipQueueSize /t REG_DWORD /d 1 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v ThreadedOptimization /t REG_DWORD /d 1 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v ShaderCache /t REG_DWORD /d 1 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v ShaderCacheSize /t REG_DWORD /d 0 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v AllowGSYNC /t REG_DWORD /d 0 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v PrerenderLimit /t REG_DWORD /d 1 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v PowerSavingMode /t REG_DWORD /d 0 /f',
+        'reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak" /v EnableUlps /t REG_DWORD /d 0 /f',
+        'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" /v TdrLevel /t REG_DWORD /d 0 /f',
+        'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" /v TdrDelay /t REG_DWORD /d 10 /f',
+        'reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" /v TdrDdiDelay /t REG_DWORD /d 10 /f',
+
+
+    
     ]
 
         for command in commands:
