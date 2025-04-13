@@ -1,24 +1,5 @@
-# raisefps
+# RaiseFPS.github.io
 
-## Project setup
-```
-npm install
-```
+## Info
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+RaiseFPS.github.io to osobista strona poświęcona aplikacji RaiseFPS, które zwiększa FPS w grach. Strona jest przeznaczona wyłącznie do mojego własnego użytku i nie może być wykorzystywana przez inne osoby.

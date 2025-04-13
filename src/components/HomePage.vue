@@ -63,7 +63,7 @@
       <section id="about" class="about">
         <div class="container">
           <div class="section-header">
-            <h2>O Narzędziu</h2>
+            <h2>o Programie</h2>
           </div>
           <div class="about-content">
             <div class="about-text">
@@ -115,7 +115,7 @@
           <div class="footer-nav">
             <a href="#home">Strona Główna</a>
             <a href="#features">Funkcje</a>
-            <a href="#about">O Narzędziu</a>
+            <a href="#about">o Programie</a>
             <a href="#kontakt">Kontakt</a>
           </div>
           <div class="social-links">
@@ -151,7 +151,7 @@ export default {
       navLinks: [
         { text: 'Strona Główna', href: '#home' },
         { text: 'Funkcje', href: '#features' },
-        { text: 'O Narzędziu', href: '#about' },
+        { text: 'o Programie', href: '#about' },
         { text: 'Kontakt', href: '#kontakt' }
       ]
     };
